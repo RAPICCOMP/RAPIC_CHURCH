@@ -1245,4 +1245,62 @@ body {
     }
 }
 
+/* Responsive polish overrides */
+/* ========================= */
 
+/* Navbar: fixed height ~1cm, compact spacing, better branding fit */
+.navbar {
+  height: 1cm;
+  padding: 0 16px !important;
+  align-items: center;
+}
+.navbar .logo img {
+  height: 0.7cm;
+  width: auto;
+}
+.navbar h2 {
+  font-size: clamp(14px, 2.6vw, 18px);
+  margin: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-links a {
+  padding: 6px 8px;
+}
+#mobile-menu .bar {
+  height: 2px;
+  width: 22px;
+}
+
+/* Prevent excessive image cropping on cards */
+.sermon-card img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+}
+img { max-width: 100%; height: auto; }
+
+/* Carousel: reduce height and avoid cropping on small screens */
+.slideshow-container,
+.carousel {
+  height: 70vh !important;
+}
+.carousel-item {
+  background-position: center;
+  background-size: cover;
+}
+@media (max-width: 768px) {
+  .slideshow-container,
+  .carousel { height: 50vh !important; }
+  .carousel-item {
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    background-color: #000;
+  }
+  .nav-links a { padding: 10px 14px; font-size: 0.95rem; }
+}
+
+/* Footer readability tweaks */
+.footer { padding: 28px 0; }
