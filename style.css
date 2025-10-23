@@ -1310,12 +1310,12 @@ body {
 
 /* Navbar: fixed height ~1cm, compact spacing, better branding fit */
 .navbar {
-  height: 1cm;
+  height: 2cm;
   padding: 0 16px !important;
   align-items: center;
 }
 .navbar .logo img {
-  height: 0.7cm;
+  height: 1.6cm;
   width: auto;
 }
 .navbar h2 {
