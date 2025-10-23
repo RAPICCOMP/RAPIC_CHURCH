@@ -1,0 +1,8 @@
+{
+  "name": "rapiccomp/rapic_church",
+  "description": "Simple PHP website",
+  "type": "project",
+  "require": {},
+  "minimum-stability": "stable",
+  "license": "proprietary"
+}
