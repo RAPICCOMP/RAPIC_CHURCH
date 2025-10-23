@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restoration Apostolic Pentecostal Remnant Church</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         /* Global Styles */
         * {
@@ -501,19 +502,37 @@
     </div>
 
     <script>
+      // Mobile nav: toggle and close on link/outside clicks
+      document.addEventListener('DOMContentLoaded', () => {
+        const nav = document.querySelector('.nav-links');
+        const burger = document.getElementById('hamburger') || document.getElementById('mobile-menu');
+        const mobileBurger = document.getElementById('mobile-menu');
 
+        const toggleMenu = () => {
+          if (nav) nav.classList.toggle('active');
+          if (burger) burger.classList.toggle('active');
+          if (mobileBurger && mobileBurger !== burger) mobileBurger.classList.toggle('active');
+        };
 
+        if (burger) burger.addEventListener('click', toggleMenu);
+        if (mobileBurger && mobileBurger !== burger) mobileBurger.addEventListener('click', toggleMenu);
 
-      let currentSlide = 0;
-      const slides = document.querySelectorAll(".slideshow img");
+        nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          nav.classList.remove('active');
+          burger?.classList.remove('active');
+          mobileBurger?.classList.remove('active');
+        }));
 
-      function showNextSlide() {
-          slides[currentSlide].classList.remove("active");
-          currentSlide = (currentSlide + 1) % slides.length;
-          slides[currentSlide].classList.add("active");
-      }
-
-      setInterval(showNextSlide, 4000);
+        document.addEventListener('click', (e) => {
+        if (!nav) return;
+        const inside = nav.contains(e.target) || (burger && burger.contains(e.target)) || (mobileBurger && mobileBurger.contains(e.target));
+        if (!inside) {
+          nav.classList.remove('active');
+          burger?.classList.remove('active');
+          mobileBurger?.classList.remove('active');
+        }
+      });
+      });
 
       let currentIndex = 0;
 
@@ -527,15 +546,8 @@ setInterval(showNextSlide, 3000); // Change image every 3 seconds
 
 
 
-
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-    
+        
+      
   </script>
 
     <footer>

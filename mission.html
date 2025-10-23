@@ -398,10 +398,36 @@
     </section>
 
     <script>
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('.nav-links');
+            const burger = document.getElementById('hamburger') || document.getElementById('mobile-menu');
+            const mobileBurger = document.getElementById('mobile-menu');
+
+            const toggleMenu = () => {
+                if (nav) nav.classList.toggle('active');
+                if (burger) burger.classList.toggle('active');
+                if (mobileBurger && mobileBurger !== burger) mobileBurger.classList.toggle('active');
+            };
+
+            if (burger) burger.addEventListener('click', toggleMenu);
+            if (mobileBurger && mobileBurger !== burger) mobileBurger.addEventListener('click', toggleMenu);
+
+            nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burger?.classList.remove('active');
+                mobileBurger?.classList.remove('active');
+            }));
+
+            document.addEventListener('click', (e) => {
+                if (!nav) return;
+                const inside = nav.contains(e.target) || (burger && burger.contains(e.target)) || (mobileBurger && mobileBurger.contains(e.target));
+                if (!inside) {
+                    nav.classList.remove('active');
+                    burger?.classList.remove('active');
+                    mobileBurger?.classList.remove('active');
+                }
+            });
+        });
     </script>
 
 <footer class="footer">
