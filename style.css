@@ -1,4 +1,61 @@
+/* ===== White + Blue Theme Overrides ===== */
+:root {
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb; /* primary */
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af; /* dark */
+  --ink-900: #0f172a; /* text */
+}
+
+body { background-color: #ffffff; color: var(--ink-900); }
+
+/* Navbar */
+.navbar { background-color: var(--blue-600) !important; color: #fff; }
+.navbar a { color: #fff !important; }
+.navbar a:hover { background-color: rgba(255,255,255,0.12) !important; color: #fff !important; }
+.navbar .logo:hover { color: var(--blue-100); }
+
+/* Buttons */
+.btn, .donate-button {
+  background-color: var(--blue-600) !important;
+  color: #fff !important;
+  border: none;
+}
+.btn:hover, .donate-button:hover { background-color: var(--blue-700) !important; }
+
+/* Links */
+a { color: var(--blue-700); }
+a:hover { color: var(--blue-800); }
+
+/* Cards and sections */
+section { background-color: #ffffff; }
+.sermon-card, .card, .event-card, .option-card { border: 1px solid var(--blue-50); }
+
+/* Dropdowns */
+.dropdown-menu { background-color: var(--blue-800) !important; }
+.dropdown-menu a { color: #fff !important; }
+.dropdown-menu a:hover { background-color: var(--blue-600) !important; color: #fff !important; }
+
+/* Tooltip */
+.tooltip { background: var(--blue-800) !important; }
+
+/* Footer */
+.footer { background-color: var(--blue-800) !important; color: #fff !important; }
+.footer a { color: var(--blue-300) !important; }
+.footer a:hover { color: #fff !important; }
+
+/* Accents */
+.nav-links a.active { color: var(--blue-300) !important; border-bottom-color: var(--blue-300) !important; }
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* General Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +63,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
     color: #333;
     line-height: 1.6;
 }
@@ -20,6 +77,9 @@ body {
     top: 0;
     width: 100%;
     z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .container {
