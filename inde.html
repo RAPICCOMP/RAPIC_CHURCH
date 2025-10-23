@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministry Page</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: #2a2a72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Slideshow styles */
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slideshow img.active {
+            display: block;
+        }
+
+        /* Gallery styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-section {
+            margin-bottom: 20px;
+        }
+
+        .gallery-section h3 {
+            border: 2px solid #2a2a72;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+
+        .modal .prev, .modal .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+
+        .modal .prev {
+            left: 5%;
+        }
+
+        .modal .next {
+            right: 5%;
+        }
+
+        /* Meetings Section */
+        .meetings {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .meeting-card {
+            flex: 1 1 calc(33% - 20px);
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Ministry</h1>
+    </header>
+
+    <div class="container">
+        <!-- Slideshow Section -->
+        <div class="section slideshow" id="slideshow">
+            <img src="image1.jpg" alt="Slide 1" class="active">
+            <img src="image2.jpg" alt="Slide 2">
+            <img src="image3.jpg" alt="Slide 3">
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="section">
+            <h2>Gallery</h2>
+            <div class="gallery-section">
+                <h3>Youth Ministry</h3>
+                <div class="gallery">
+                    <img src="gallery1.jpg" alt="Gallery Image 1" data-index="0">
+                    <img src="gallery2.jpg" alt="Gallery Image 2" data-index="1">
+                    <img src="gallery3.jpg" alt="Gallery Image 3" data-index="2">
+                </div>
+            </div>
+            <div class="gallery-section">
+                <h3>Women of Faith</h3>
+                <div class="gallery">
+                    <img src="gallery4.jpg" alt="Gallery Image 4" data-index="3">
+                    <img src="gallery5.jpg" alt="Gallery Image 5" data-index="4">
+                    <img src="gallery6.jpg" alt="Gallery Image 6" data-index="5">
+                </div>
+            </div>
+        </div>
+
+        <!-- Meetings Section -->
+        <div class="section">
+            <h2>Upcoming Meetings</h2>
+            <div class="meetings">
+                <div class="meeting-card">
+                    <h3>Prayer Meeting</h3>
+                    <p>Join us every Wednesday for a prayer session.</p>
+                </div>
+                <div class="meeting-card">
+                    <h3>Bible Study</h3>
+                    <p>Explore the word of God every Friday evening.</p>
+                </div>
+                <div class="meeting-card">
+                    <h3>Youth Fellowship</h3>
+                    <p>Engage with the youth community every Saturday.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Our Ministry. All rights reserved.</p>
+    </footer>
+
+    <div class="modal" id="modal">
+        <span class="prev">&lt;</span>
+        <img src="" alt="Full Image" id="modal-image">
+        <span class="next">&gt;</span>
+    </div>
+
+    <script>
+        // Slideshow functionality
+        const slides = document.querySelectorAll('.slideshow img');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => showSlide(currentSlide + 1), 3000);
+
+        // Gallery modal functionality
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+        const galleryImages = document.querySelectorAll('.gallery img');
+        let currentImageIndex = 0;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalImage.src = img.src;
+                currentImageIndex = index;
+            });
+        });
+
+        document.querySelector('.modal .prev').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            modalImage.src = galleryImages[currentImageIndex].src;
+        });
+
+        document.querySelector('.modal .next').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            modalImage.src = galleryImages[currentImageIndex].src;
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

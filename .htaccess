@@ -1,0 +1,11 @@
+# Canonical homepage and entry
+DirectoryIndex index.php
+
+RewriteEngine On
+
+# Redirect duplicate homepages to index.php
+RewriteRule ^index\.html$ index.php [R=301,L]
+RewriteRule ^inde\.html$ index.php [R=301,L]
+RewriteRule ^indx\.php$ index.php [R=301,L]
+
+# Optional: ensure trailing slashless root resolves to index.php (handled by DirectoryIndex)

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            
+        
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #dfdbdb;
+        }
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            border: 1px solid #011310;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1, .header h2, .header h3 {
+            margin: 5px;
+        }
+        .card-number {
+            text-align: right;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .details-table, .membership-fee table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .details-table th, .details-table td {
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        .monthly-contributions {
+            margin-top: 20px;
+        }
+        .monthly-contributions h4 {
+            margin-bottom: 10px;
+        }
+        .year-section {
+            margin-bottom: 20px;
+        }
+        .months-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .months-container div {
+            margin-right: 5px;
+        }
+        .renew-button, .close-button, .add-member-button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body background-color="background-color">
+
+<h1>Mount Horeb</h1>
+<button class="add-member-button" onclick="addNewMember()">Add New Member</button>
+<table id="memberTable">
+    <thead>
+        <tr>
+            <th>ID Number</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows dynamically generated -->
+    </tbody>
+</table>
+
+<div id="membershipCard" class="container" style="display: none;">
+    <div class="header">
+        <h2>RESTORATION APOSTOLIC PENTECOSTAL REMNANT CHURCH INTERNATIONAL </h2>
+        <h>NDOLA MAIN BRANCH - JERUSALEM CENTRE</h>
+        <h>ACTIVE MEMBERSHIP CARD</h>
+    </div>
+    <div class="card-number" id="cardNumber"></div>
+    <table class="details-table">
+        <tr><th>NAME:</th><td id="memberName"></td></tr>
+        <tr><th>DATE OF BIRTH:</th><td id="memberDOB"></td></tr>
+        <tr><th>GENDER:</th><td id="memberGender"></td></tr>
+        <tr><th>DATE OF JOINING:</th><td id="memberJoining"></td></tr>
+        <tr><th>NATIONALITY:</th><td id="memberNationality"></td></tr>
+        <tr><th>TOWN:</th><td id="memberTown"></td></tr>
+        <tr><th>HOUSE NO.:</th><td id="memberHouse"></td></tr>
+    </table>
+
+    <!-- Monthly Contributions Section -->
+    <div class="monthly-contributions">
+        <h4>Monthly Contributions</h4>
+        <div id="contributions"></div>
+        <div class="renew-button">
+            <button id="renewButton" onclick="renewCard()">Renew Card</button>
+        </div>
+        <div class="close-button">
+            <button onclick="closeCard()">Close Card</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const members = [
+        {
+            id: "0790",
+            name: "MATHEW MUSONI",
+            dob: "12 NOVEMBER 2009",
+            gender: "MALE",
+            joining: "2017",
+            nationality: "ZAMBIAN",
+            town: "KITWE",
+            house: "240 OLD NDEKE"
+        }
+    ];
+
+    const months = ["APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC", "JAN", "FEB", "MAR"];
+    let startYear = new Date().getFullYear();
+    let yearRange = 5;
+
+    function generateContributions(yearStart) {
+        const contributionsDiv = document.getElementById('contributions');
+        contributionsDiv.innerHTML = '';
+        const currentYear = yearStart + yearRange - 1;
+
+        for (let year = yearStart; year <= currentYear; year++) {
+            const yearDiv = document.createElement('div');
+            yearDiv.className = 'year-section';
+            yearDiv.innerHTML = `<h5>${year}</h5>`;
+
+            const monthsContainer = document.createElement('div');
+            monthsContainer.className = 'months-container';
+
+            months.forEach(month => {
+                const monthCheckbox = document.createElement('div');
+                monthCheckbox.innerHTML = `
+                    <label>
+                        <input type="checkbox" data-year="${year}" data-month="${month}" /> ${month}
+                    </label>
+                `;
+                monthsContainer.appendChild(monthCheckbox);
+            });
+
+            yearDiv.appendChild(monthsContainer);
+            contributionsDiv.appendChild(yearDiv);
+        }
+    }
+
+    function populateMemberTable() {
+        const tableBody = document.getElementById('memberTable').querySelector('tbody');
+        tableBody.innerHTML = '';
+        members.forEach(member => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><a href="#" class="view-card" data-id="${member.id}">${member.id}</a></td>
+                <td>${member.name}</td>
+                <td>
+                    <button class="view-card" data-id="${member.id}">View Card</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function viewMembershipCard(memberId) {
+        const member = members.find(m => m.id === memberId);
+        if (member) {
+            document.getElementById('cardNumber').innerText = `# ${member.id}`;
+            document.getElementById('memberName').innerText = member.name;
+            document.getElementById('memberDOB').innerText = member.dob;
+            document.getElementById('memberGender').innerText = member.gender;
+            document.getElementById('memberJoining').innerText = member.joining;
+            document.getElementById('memberNationality').innerText = member.nationality;
+            document.getElementById('memberTown').innerText = member.town;
+            document.getElementById('memberHouse').innerText = member.house;
+            document.getElementById('membershipCard').style.display = 'block';
+            generateContributions(startYear);
+        }
+    }
+
+    function renewCard() {
+        const allChecked = [...document.querySelectorAll('#contributions input[type="checkbox"]')].every(cb => cb.checked);
+        if (allChecked) {
+            startYear += yearRange;
+            generateContributions(startYear);
+        } else {
+            alert('Please complete all checkboxes to renew the card.');
+        }
+    }
+
+    function closeCard() {
+        document.getElementById('membershipCard').style.display = 'none';
+    }
+
+    function addNewMember() {
+        const newMember = {
+            id: "0792", // Replace with unique ID logic
+            name: prompt("Enter Member Name:"),
+            dob: prompt("Enter Date of Birth:"),
+            gender: prompt("Enter Gender:"),
+            joining: prompt("Enter Year of Joining:"),
+            nationality: prompt("Enter Nationality:"),
+            town: prompt("Enter Town:"),
+            house: prompt("Enter House No.:")
+        };
+        members.push(newMember);
+        populateMemberTable();
+    }
+
+    document.getElementById('memberTable').addEventListener('click', function(e) {
+        if (e.target.classList.contains('view-card')) {
+            e.preventDefault();
+            viewMembershipCard(e.target.dataset.id);
+        }
+    });
+
+    populateMemberTable();
+</script>
+
+</body>
+</html>

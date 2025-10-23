@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baptized Members</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* Navbar styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .navbar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #060e16;
+      color: white;
+    }
+
+    .add-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 20px 0;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .add-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-content h2 {
+      margin: 0 0 15px;
+      color: #333;
+    }
+
+    .modal-content label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .modal-content input, .modal-content button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      background-color: #152332;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background-color: #0e141b;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Church Management System</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="branches.html">Branches</a></li>
+        <li><a href="members.html">Members</a></li>
+
+        
+        <li><a href="visitors.html">Visitors</a></li>
+        <li><a href="believers.html">Believers</a></li>
+        <li><a href="apointment.html">Appointments</a></li>
+    </ul>
+  </div>
+
+  <h1>Baptized Members</h1>
+  <button class="add-btn" id="addMemberBtn">Add Member</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th>Date of Baptism</th>
+        <th>Baptized By</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody id="membersTable">
+      <tr>
+        <td>1</td>
+        <td>John Doe</td>
+        <td>2025-01-01</td>
+        <td>Pastor Mark Smith</td>
+        <td>Male</td>
+        <td>25</td>
+        <td>123 Maple St., City</td>
+        <td>123-456-7890</td>
+        <td>john.doe@example.com</td>
+        <td>Joined Youth Group</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div class="modal" id="addMemberModal">
+    <div class="modal-content">
+      <h2>Add New Member</h2>
+      <form id="addMemberForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="date">Date of Baptism:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="baptizedBy">Baptized By:</label>
+        <input type="text" id="baptizedBy" name="baptizedBy" required>
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="contact">Contact:</label>
+        <input type="tel" id="contact" name="contact" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="remarks">Remarks:</label>
+        <input type="text" id="remarks" name="remarks">
+
+        <button type="submit">Add Member</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const addMemberBtn = document.getElementById('addMemberBtn');
+    const addMemberModal = document.getElementById('addMemberModal');
+    const membersTable = document.getElementById('membersTable');
+    const form = document.getElementById('addMemberForm');
+
+    // Open the modal
+    addMemberBtn.addEventListener('click', () => {
+      addMemberModal.style.display = 'flex';
+    });
+
+    // Close the modal when clicking outside the content
+    addMemberModal.addEventListener('click', (e) => {
+      if (e.target === addMemberModal) {
+        addMemberModal.style.display = 'none';
+      }
+    });
+
+    // Add new member to the table
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const baptizedBy = document.getElementById('baptizedBy').value;
+      const gender = document.getElementById('gender').value;
+      const age = document.getElementById('age').value;
+      const address = document.getElementById('address').value;
+      const contact = document.getElementById('contact').value;
+      const email = document.getElementById('email').value;
+      const remarks = document.getElementById('remarks').value;
+
+      const row = membersTable.insertRow();
+      row.innerHTML = `
+        <td>${membersTable.rows.length}</td>
+        <td>${name}</td>
+        <td>${date}</td>
+        <td>${baptizedBy}</td>
+        <td>${gender}</td>
+        <td>${age}</td>
+        <td>${address}</td>
+        <td>${contact}</td>
+        <td>${email}</td>
+        <td>${remarks}</td>
+      `;
+
+      addMemberModal.style.display = 'none';
+      form.reset();
+    });
+  </script>
+</body>
+</html>

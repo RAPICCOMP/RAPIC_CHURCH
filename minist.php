@@ -1,0 +1,928 @@
+<?php
+// Move session_start to the very top of the file, before any output
+session_start();
+?>
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoration Apostolic Pentecostal Remnant Church</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin-top: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding-top: 70px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Fade In animation for the body */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 0; /* Set padding to 0 on left and right for full width */
+    position: fixed;
+    top: 0;
+    left: 0; /* Ensure navbar starts at the left edge */
+    right: 0; /* Ensure navbar spans the full width */
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    animation: slideDown 0.7s forwards 0.3s;
+}
+
+        /* Slide Down animation for the navbar */
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Logo Styles */
+        .navbar .logo img {
+            width: 80px; /* Reduced logo size */
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo:hover img {
+            transform: scale(1.1);
+        }
+
+        .church-name-marquee {
+    flex:1;
+    margin:0 10px;
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+    min-width:0;
+    text-align:left;
+}
+.church-name-marquee span {
+    display:inline-block;
+    padding-left:100%;
+    animation: marquee 16s linear infinite;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+@media (max-width: 768px) {
+    .church-name-marquee span {
+        font-size: 0.95rem;
+        animation: marquee 16s linear infinite;
+    }
+}
+@media (max-width: 480px) {
+    .church-name-marquee span {
+        font-size: 0.8rem;
+        animation: marquee 16s linear infinite;
+    }
+}
+
+        .nav-links {
+            display: flex;
+            list-style-type: none;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeInLinks 1s ease-in-out 1.2s forwards;
+        }
+
+        /* Fade In animation for nav links */
+        @keyframes fadeInLinks {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links li {
+            margin: 0 15px; /* Reduced margin between nav links */
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px; /* Adjusted font size */
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease, transform 0.3s ease;
+            animation: slideIn 0.6s ease-in-out;
+        }
+
+        /* Slide In animation for links */
+        @keyframes slideIn {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #f4d03f;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-links a:hover {
+            color: #f4d03f;
+            transform: translateY(-3px);
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.footer-column h3 {
+  margin-bottom: 10px;
+}
+
+.footer-column p {
+  margin: 5px 0;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 5px;
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  background-color: #3b5998; /* Facebook */
+}
+
+.social-icons a:nth-child(2) {
+  background-color: #1da1f2; /* Twitter */
+}
+
+.social-icons a:nth-child(3) {
+  background-color: #e1306c; /* Instagram */
+}
+
+.social-icons a:nth-child(4) {
+  background-color: #ff0000; /* YouTube */
+}
+
+/* Responsive Design for Ministry Cards and Sections */
+@media (max-width: 1200px) {
+    .footer-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .footer-column {
+        max-width: 95vw;
+        margin: 10px 0;
+    }
+    .cards-section {
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: center;
+    }
+    .card {
+        width: 45%;
+        min-width: 220px;
+        max-width: 400px;
+        margin-bottom: 18px;
+    }
+}
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        padding: 2px 5px;
+        min-height: 32px;
+    }
+    .church-name-marquee span {
+        font-size: 0.95rem;
+    }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #fff;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: none;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-links li {
+        margin: 10px 0;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .cards-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+    }
+    .card {
+        width: 90vw;
+        min-width: 180px;
+        max-width: 98vw;
+        margin-bottom: 12px;
+    }
+    .card img {
+        height: 180px;
+    }
+}
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: row;
+        padding: 1px 5px;
+        min-height: 24px;
+    }
+    .church-name-marquee span {
+        font-size: 0.8rem;
+    }
+    .footer-container {
+        flex-direction: column;
+        width: 100vw;
+        gap: 10px;
+        padding: 0 2px;
+    }
+    .footer-column {
+        width: 98vw;
+        min-width: unset;
+        margin: 6px 0;
+        padding: 8px;
+    }
+    .cards-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 0;
+    }
+    .card {
+        width: 98vw;
+        min-width: 120px;
+        max-width: 99vw;
+        margin-bottom: 8px;
+        padding: 6px;
+    }
+    .card img {
+        height: 100px;
+    }
+    .card h3 {
+        font-size: 1rem;
+    }
+    .card a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Replace with your smaller logo file -->
+                <img src="logo.jpg" alt="Church Logo">
+            </div>
+            <div class="church-name-marquee">
+                <span>Restoration Apostolic Pentecostal Remnant Church</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutu.html">About</a></li>
+                <li><a href="sermon.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPPIC Kids - Remnant Church</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+            background-color: #f5f5f5;
+    padding-top: 70px; /* Matches the navbar height */
+    animation: fadeIn 1s ease-in-out;
+            
+        }
+
+        
+        /* Slideshow */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin-top: auto ;
+            overflow: hidden;
+            margin-top: 20px; /* Adjust as needed */
+            
+            
+        }
+
+        .slideshow-container {
+    margin-top: 20px; /* Adjust as needed */
+}
+
+
+        .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .active-slide {
+            display: block;
+        }
+
+        /* Content Section */
+        .content-section {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        /* Cards Section */
+        .cards-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px 0;
+            background-color: #f9f9f9;
+        }
+
+        .card {
+            width: 30%;
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: inline-block;
+            margin: 10px 0 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .card a:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                padding: 10px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .cards-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Responsive Design for Ministry Cards and Sections */
+@media (max-width: 1200px) {
+    .footer-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .footer-column {
+        max-width: 95vw;
+        margin: 10px 0;
+    }
+    .cards-section {
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: center;
+    }
+    .card {
+        width: 45%;
+        min-width: 220px;
+        max-width: 400px;
+        margin-bottom: 18px;
+    }
+}
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        padding: 2px 5px;
+        min-height: 32px;
+    }
+    .church-name-marquee span {
+        font-size: 0.95rem;
+    }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #fff;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: none;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-links li {
+        margin: 10px 0;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .cards-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+    }
+    .card {
+        width: 90vw;
+        min-width: 180px;
+        max-width: 98vw;
+        margin-bottom: 12px;
+    }
+    .card img {
+        height: 180px;
+    }
+}
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: row;
+        padding: 1px 5px;
+        min-height: 24px;
+    }
+    .church-name-marquee span {
+        font-size: 0.8rem;
+    }
+    .footer-container {
+        flex-direction: column;
+        width: 100vw;
+        gap: 10px;
+        padding: 0 2px;
+    }
+    .footer-column {
+        width: 98vw;
+        min-width: unset;
+        margin: 6px 0;
+        padding: 8px;
+    }
+    .cards-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 0;
+    }
+    .card {
+        width: 98vw;
+        min-width: 120px;
+        max-width: 99vw;
+        margin-bottom: 8px;
+        padding: 6px;
+    }
+    .card img {
+        height: 100px;
+    }
+    .card h3 {
+        font-size: 1rem;
+    }
+    .card a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+    </style>
+</head>
+
+<body> 
+
+    <div class="slideshow-container">
+        <div class="slide active-slide">
+            <img src="praying1.jpg" alt="Kids having fun">
+        </div>
+        <div class="slide">
+            <img src="womenoffaith1.jpg" alt="Kids learning together">
+        </div>
+        <div class="slide">
+            <img src="director.jpg" alt="Kids playing games">
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">RAPRCI MINISTRIES</div>
+        <div class="section-content">
+            
+        </div>
+    </div>
+
+
+
+<?php
+// Move session_start to the very top of the file, before any output
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include('db_connect.php');  // Include the database connection
+
+// Fetch ministries from the database
+$query = "SELECT * FROM ministries";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Error: " . mysqli_error($conn));
+}
+?>
+
+<!-- Display Ministries -->
+<div class="cards-section">
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+        <div class="card">
+            <img src="<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
+            <h3><?= $row['name'] ?></h3>
+            <a href="ministry_page.php?id=<?= $row['id'] ?>">Learn More</a>
+        </div>
+    <?php endwhile; ?>
+</div>
+
+
+    <!-- Third Section -->
+    <div class="cards-section">
+
+        
+        
+
+        <div class="card">
+            <img src="youth.jpg" alt="Youth Ministry">
+            <h3>Peace Maker's Youth Ministry</h3>
+            <a href="youth.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="womenoffaith2.jpg" alt="Women of Faith">
+            <h3>Remnant Women of Faith</h3>
+            <a href="women-ministry.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="pyy1.jpg" alt="Men's Section">
+            <h3>Remnant Desciple's Of Jesus</h3>
+            <a href="men.html">Learn More</a>
+        </div>
+
+        
+    </div>
+
+
+
+    <div class="cards-section">
+
+        
+
+
+        <div class="card">
+            <img src="youth.jpg" alt="Youth Ministry">
+            <h3>Peace Maker's Youth Ministry</h3>
+            <a href="youth.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="women3.jpg" alt="Women of Faith">
+            <h3>Remnant Women of Faith</h3>
+            <a href="women-ministry.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="pyy1.jpg" alt="Men's Section">
+            <h3>Remnant Desciple's Of Jesus</h3>
+            <a href="men.html">Learn More</a>
+        </div>
+
+        
+    </div>
+
+  
+
+
+    <div class="cards-section">
+
+        
+
+
+        <div class="card">
+            <img src="youth.jpg" alt="Youth Ministry">
+            <h3>Peace Maker's Youth Ministry</h3>
+            <a href="youth.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="womenoffaith2.jpg" alt="Women of Faith">
+            <h3>Remnant Women of Faith</h3>
+            <a href="women.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="pyy1.jpg" alt="Men's Section">
+            <h3>Remnant Desciple's Of Jesus</h3>
+            <a href="men.html">Learn More</a>
+        </div>
+
+        
+    </div>
+
+
+
+    <div class="cards-section">
+
+        
+
+
+        <div class="card">
+            <img src="youth.jpg" alt="Youth Ministry">
+            <h3>Peace Maker's Youth Ministry</h3>
+            <a href="youth.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="womenoffaith2.jpg" alt="Women of Faith">
+            <h3>Remnant Women of Faith</h3>
+            <a href="women.html">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="pyy1.jpg" alt="Men's Section">
+            <h3>Remnant Desciple's Of Jesus</h3>
+            <a href="men.html">Learn More</a>
+        </div>
+
+
+
+        
+
+        
+
+        
+    </div>
+
+
+
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>CONTACT US</h3>
+            <p>+260 979 888555 | +260 964 888555</p>
+            <p>Emergency Line for members only:</p>
+            <p>+260 967 or 977 521929</p>
+            <p>Email: info@mlfc.org</p>
+          </div>
+          <div class="footer-column">
+            <h3>ADDRESS</h3>
+            <p>Plot 256 Foxdale, Zambezi Road</p>
+            <p>Chamba Valley, PO Box 32275</p>
+            <p>Lusaka, Zambia</p>
+          </div>
+          <div class="footer-column">
+            <h3>FOLLOW US</h3>
+            <div class="social-icons">
+              <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <script>
+        // Toggle menu
+        function toggleMenu() {
+            const menu = document.querySelector('.navbar-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active-slide');
+                if (index === slideIndex) {
+                    slide.classList.add('active-slide');
+                }
+            });
+
+            slideIndex = (slideIndex + 1) % slides.length;
+            setTimeout(showSlides, 5000); // Change slide every 5 seconds
+        }
+
+        // Initialize slideshow
+        showSlides();
+    </script>
+</body>
+
+</html>

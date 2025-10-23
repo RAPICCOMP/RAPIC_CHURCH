@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoration Apostolic Pentecostal Remnant Church</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding-top: 70px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Fade In animation for the body */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px; /* Reduced padding for a smaller navbar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            animation: slideDown 0.7s forwards 0.3s;
+        }
+
+        /* Slide Down animation for the navbar */
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Logo Styles */
+        .navbar .logo img {
+            width: 80px; /* Reduced logo size */
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo:hover img {
+            transform: scale(1.1);
+        }
+
+        .navbar .church-name {
+            font-size: 16px; /* Reduced font size */
+            color: #333;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .church-name:hover {
+            color: #f4d03f;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style-type: none;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeInLinks 1s ease-in-out 1.2s forwards;
+        }
+
+        /* Fade In animation for nav links */
+        @keyframes fadeInLinks {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links li {
+            margin: 0 15px; /* Reduced margin between nav links */
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px; /* Adjusted font size */
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease, transform 0.3s ease;
+            animation: slideIn 0.6s ease-in-out;
+        }
+
+        /* Slide In animation for links */
+        @keyframes slideIn {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #f4d03f;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-links a:hover {
+            color: #f4d03f;
+            transform: translateY(-3px);
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Replace with your smaller logo file -->
+                <img src="logo.jpg" alt="Church Logo">
+            </div>
+            <div class="church-name">
+                Restoration Apostolic Pentecostal Remnant Church
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sermon.html">Sermon</a></li>
+                
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoration Apostolic Pentecostal Remnant Church International</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+        .interactive-section {
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        .interactive-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .interactive-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .interactive-buttons button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .interactive-buttons button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        .hidden-content {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .related-sermons {
+            margin-top: 20px;
+        }
+        .related-sermons h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .related-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .related-links a {
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #3498db;
+            transition: background-color 0.3s ease;
+        }
+        .related-links a:hover {
+            background-color: #e3e3e3;
+        }
+        .video-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .video-section video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .video-section .encouragement {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sabbath Sermon: Trusting God in Difficult Times</h1>
+            <p>Inspiration and guidance for life's challenging moments.</p>
+        </header>
+
+        <section class="interactive-section">
+            <h2>Explore the Sermon</h2>
+            <div class="interactive-buttons">
+                <button id="toggleRelated">View Related Sermons</button>
+                <button id="toggleAudio">Listen to Audio</button>
+                <button id="toggleTheory">Read the Theory</button>
+            </div>
+
+            <div id="relatedContent" class="hidden-content related-sermons">
+                <h3>Related Sermons</h3>
+                <ul class="related-links">
+                    <li><a href="#">Sermon: The Power of Love</a></li>
+                    <li><a href="#">Sermon: Walking in Faith</a></li>
+                    <li><a href="#">Sermon: Overcoming Fear</a></li>
+                </ul>
+            </div>
+
+            <div id="audioContent" class="hidden-content">
+                <p>Audio message is now playing...</p>
+            </div>
+
+            <div id="theoryContent" class="hidden-content">
+                <h3>The Theory of Trusting God in Difficult Times</h3>
+                <p>This message delves into the importance of relying on God's promises during challenging moments...</p>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <video controls>
+                <source src="sermon-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="encouragement">
+                <p>"Remember, no matter the storm, God is always by your side. Trust in His plan and hold onto His promises."</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const toggleRelated = document.getElementById('toggleRelated');
+        const toggleAudio = document.getElementById('toggleAudio');
+        const toggleTheory = document.getElementById('toggleTheory');
+
+        const relatedContent = document.getElementById('relatedContent');
+        const audioContent = document.getElementById('audioContent');
+        const theoryContent = document.getElementById('theoryContent');
+
+        toggleRelated.addEventListener('click', () => {
+            relatedContent.style.display = relatedContent.style.display === 'block' ? 'none' : 'block';
+            audioContent.style.display = 'none';
+            theoryContent.style.display = 'none';
+        });
+
+        toggleAudio.addEventListener('click', () => {
+            audioContent.style.display = audioContent.style.display === 'block' ? 'none' : 'block';
+            relatedContent.style.display = 'none';
+            theoryContent.style.display = 'none';
+        });
+
+        toggleTheory.addEventListener('click', () => {
+            theoryContent.style.display = theoryContent.style.display === 'block' ? 'none' : 'block';
+            relatedContent.style.display = 'none';
+            audioContent.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

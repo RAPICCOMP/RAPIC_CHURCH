@@ -1,0 +1,250 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #2a3b8f;
+}
+
+a {
+    text-decoration: none;
+    color: #2a3b8f;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 30px auto;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #2a3b8f;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #1d2b5c;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Admin Dashboard */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+/* Success/ Error Messages */
+.success {
+    color: green;
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+    font-size: 16px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    form {
+        width: 80%;
+    }
+}
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1, h2 {
+    margin: 0;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Buttons */
+button, .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover, .button:hover {
+    background-color: #45a049;
+}
+
+button:focus, .button:focus {
+    outline: none;
+}
+
+/* Sermon List */
+.sermon-list {
+    margin-top: 30px;
+}
+
+.sermon-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sermon-list li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sermon-list li img {
+    max-width: 150px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.sermon-list li .actions {
+    font-size: 14px;
+}
+
+.sermon-list li .actions a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.sermon-list li .actions a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #ff0000;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.success {
+    color: #28a745;
+    background-color: #d4edda;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="text"],
+form textarea,
+form input[type="file"],
+form input[type="url"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+form button {
+    align-self: flex-start;
+    width: 200px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .sermon-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sermon-list li img {
+        margin-bottom: 10px;
+    }
+}

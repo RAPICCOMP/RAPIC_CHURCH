@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoration Apostolic Pentecostal Remnant Church</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding-top: 70px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Fade In animation for the body */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px; /* Reduced padding for a smaller navbar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            animation: slideDown 0.7s forwards 0.3s;
+        }
+
+        /* Slide Down animation for the navbar */
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Logo Styles */
+        .navbar .logo img {
+            width: 80px; /* Reduced logo size */
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo:hover img {
+            transform: scale(1.1);
+        }
+
+        .navbar .church-name {
+            font-size: 16px; /* Reduced font size */
+            color: #333;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .church-name:hover {
+            color: #f4d03f;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style-type: none;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeInLinks 1s ease-in-out 1.2s forwards;
+        }
+
+        /* Fade In animation for nav links */
+        @keyframes fadeInLinks {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links li {
+            margin: 0 15px; /* Reduced margin between nav links */
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px; /* Adjusted font size */
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease, transform 0.3s ease;
+            animation: slideIn 0.6s ease-in-out;
+        }
+
+        /* Slide In animation for links */
+        @keyframes slideIn {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #f4d03f;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-links a:hover {
+            color: #f4d03f;
+            transform: translateY(-3px);
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color:black;
+        }
+
+        header {
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: white;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+
+        .slideshow {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 5s;
+        }
+
+        .slideshow img.active {
+            opacity: 5;
+        }
+
+
+        .donation-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgb(216, 202, 202);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .donation-container h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+        }
+
+        .donation-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .option-card {
+            flex: 1;
+            min-width: 280px;
+            background:#182848;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .option-card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .option-card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #e7e3e3;
+        }
+
+        .option-card-content p {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .donate-button {
+            margin-top: 15px;
+            display: inline-block;
+            padding: 10px 20px;
+            background: #51565f;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .donate-button:hover {
+            background: #4b6cb7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #182848;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        /* Slideshow container */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000; /* Background color in case images load slowly */
+}
+
+/* Styling for the images */
+.slideshow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes the image cover the entire screen without distortion */
+  object-position: center; /* Ensures the image stays centered */
+  transition: opacity 1s ease-in-out; /* Smooth fade transition between images */
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0; /* Make all images invisible initially */
+}
+
+/* Make active image visible */
+.slideshow img.active {
+  opacity: 1;
+}
+
+/* Optional: Fade effect for each image */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Slideshow navigation arrows (optional, if you want them) */
+.slideshow .prev,
+.slideshow .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.slideshow .prev {
+  left: 10px;
+}
+
+.slideshow .next {
+  right: 10px;
+}
+
+/* Add smooth scrolling or a transition to move through images */
+@media screen and (max-width: 768px) {
+  /* Mobile: Centered, non-cropped images */
+  .slideshow img {
+    object-fit: contain; /* Keep aspect ratio without cropping on mobile */
+    height: auto;
+  }
+}
+
+    </style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Will Giving</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+      
+    </style>
+</head>
+
+<header>
+  <nav class="navbar">
+      <div class="logo">
+          <!-- Replace with your smaller logo file -->
+          <img src="logo.jpg" alt="Church Logo">
+      </div>
+      <div class="church-name">
+          Restoration Apostolic Pentecostal Remnant Church
+      </div>
+      <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="freewillgiving.html">Events Gallery</a></li>
+          
+          
+          
+      </ul>
+      <div class="hamburger" id="hamburger">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+      </div>
+  </nav>
+</header>
+
+
+<body>
+    <header>
+        <h1>Free will Giving</h1>
+        
+    </header>
+
+    <div class="container">
+      <!-- Slideshow Section -->
+      <div class="slideshow" id="slideshow">
+        <img src="womenoffaith1.jpg" alt="Slide 1" class="active">
+        <img src="director.jpg" alt="Slide 2">
+        <img src="pyy1.jpg" alt="Slide 3">
+        <img src="all2.jpg" alt="Slide 4">
+        <img src="director2.jpg" alt="Slide 5">
+        <img src="everyone.jpg" alt="Slide 6">
+        <img src="faza.jpg" alt="Slide 7">
+        <img src="gathering.jpg" alt="Slide 8">
+        <img src="intercession.jpg" alt="Slide 9">
+        <img src="pyy5.jpg" alt="Slide 10">
+        <img src="womenoffaith3.jpg" alt="Slide 11">
+        <img src="womenoffaith10.jpeg" alt="Slide 12">
+        <img src="youth.jpg" alt="Slide 13">
+        <img src="pyy3.jpg" alt="Slide 14">
+        <img src="power.jpeg" alt="Slide 15">
+    </div>
+
+    <header>
+      <h1>Free will Giving</h1>
+      <h1>Support Our Mission</h1>
+      <p>Your generous contributions make a difference in our community and beyond.</p>
+  </header>
+    
+
+    <div class="donation-container">
+      
+        <h2>Giving Options</h2>
+        <div class="donation-options">
+            <div class="option-card">
+                <img src="feedthehungry.jpg" alt="Feed the Hungry">
+                <div class="option-card-content">
+                    <h3>Feed the Hungry</h3>
+                    <p>Help us provide meals to those in need through our outreach programs.</p>
+                    <a href="givingoptions.html" class="donate-button">Give</a>
+                </div>
+            </div>
+            <div class="option-card">
+                <img src="Buildingfund.jpg" alt="Building Fund">
+                <div class="option-card-content">
+                    <h3>Building Fund</h3>
+                    <p>Contribute to the expansion and maintenance of our church facilities.</p>
+                    <a href="givingoptions.html" class="donate-button">Give</a>
+                </div>
+            </div>
+            <div class="option-card">
+                <img src="supportminstry.jpg" alt="Support Our Ministries">
+                <div class="option-card-content">
+                    <h3>Support Our Ministries</h3>
+                    <p>Support activities and mentorship programs for our youth.</p>
+                    <a href="givingoptions.html" class="donate-button">Give</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slideshow img");
+
+      function showNextSlide() {
+          slides[currentSlide].classList.remove("active");
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add("active");
+      }
+
+      setInterval(showNextSlide, 4000);
+
+      let currentIndex = 0;
+
+function showNextSlide() {
+  slides[currentIndex].classList.remove('active');
+  currentIndex = (currentIndex + 1) % slides.length;
+  slides[currentIndex].classList.add('active');
+}
+
+setInterval(showNextSlide, 3000); // Change image every 3 seconds
+
+
+
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    
+  </script>
+
+    <footer>
+        <p>&copy; 2025 Our Church. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

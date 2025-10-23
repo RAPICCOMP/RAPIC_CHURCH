@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="Church Logo">
+        </div>
+        <h1>Restoration Apostolic Pentecostal Remnant Church</h1>
+        <nav>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="branches.html">Branches</a></li>
+            <li><a href="members.html">Members</a></li>
+           
+            <li><a href="visitorsform.html">Visitors Form</a></li>
+            <li><a href="visitors.html">Visitors</a></li>
+            <li><a href="membershipcards.html">Membership Card</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Branch Details Section -->
+    <section class="branch-details-section">
+        <h2 id="branch-name">Branch Name</h2>
+        <h3 id="group-name">Cell Group Name</h3>
+        <div id="attendance">
+            <!-- Attendance details will be loaded dynamically -->
+        </div>
+    </section>
+
+    <script>
+        // Extract URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const branchIndex = urlParams.get('branch');
+        const groupName = urlParams.get('group');
+
+        // Populate details
+        document.getElementById('branch-name').textContent = branches[branchIndex].name;
+        document.getElementById('group-name').textContent = groupName;
+
+        // Load attendance details
+        const attendanceDiv = document.getElementById('attendance');
+        const sampleMembers = [
+            { id: 1, name: "John Phiri", status: "Married", attendance: "90%" },
+            { id: 2, name: "Jane Bwalya", status: "Single", attendance: "80%",monthlycontribution: 'K5' },
+        ];
+
+        sampleMembers.forEach(member => {
+            const memberDiv = document.createElement('div');
+            memberDiv.textContent = `${member.name} (${member.status}): Attendance ${member.attendance}`;
+            attendanceDiv.appendChild(memberDiv);
+        });
+    </script>
+</body>
+</html>

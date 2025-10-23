@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prophet Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('appointments-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        .navbar .flag {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .form-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f4f4f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .form-container input, .form-container button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #218838;
+        }
+
+        .show-form-button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .show-form-button:hover {
+            background-color: #0056b3;
+        }
+
+        .postpone-button {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .postpone-button:hover {
+            background-color: #e0a800;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        .late-flag {
+            background-color: #dc3545;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        .postponed-flag {
+            background-color: #ffc107;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        .actions-column {
+            width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 20px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            .form-container {
+                padding: 15px;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                text-align: center;
+            }
+
+            .navbar a {
+                margin: 5px 0;
+            }
+
+            .actions-column {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Church Management</div>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Appointments</a>
+            <a href="#">Reports</a>
+            <a href="#">Settings</a>
+            <span class="flag" id="pendingFlag" style="display: none;">Pending Appointments</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Prophet Appointments</h1>
+
+        <table id="appointmentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Reason</th>
+                    <th>Appointment Given</th>
+                    <th>Appointment Day</th>
+                    <th>Time</th>
+                    <th>Address</th>
+                    <th>Days Late</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added dynamically -->
+            </tbody>
+        </table>
+
+        <div class="actions-column">
+            <button class="postpone-button" id="postponeBtn" style="display: none;" onclick="postponeAppointment()">Postpone</button>
+            <button class="delete-button" id="deleteBtn" style="display: none;" onclick="deleteAppointment()">Delete</button>
+        </div>
+
+        <button class="show-form-button" onclick="toggleForm()">Add New Appointment</button>
+
+        <div class="form-container" id="formContainer">
+            <input type="text" id="fullName" placeholder="Full Name" required>
+            <input type="text" id="reason" placeholder="Reason for Appointment" required>
+            <input type="date" id="appointmentGiven" placeholder="Appointment Given Date" required>
+            <input type="date" id="appointmentDay" placeholder="Appointment Day" required>
+            <input type="time" id="appointmentTime" placeholder="Appointment Time" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="contact" placeholder="Contact" required>
+            <button onclick="addAppointment()">Add Appointment</button>
+        </div>
+    </div>
+
+    <script>
+        let appointmentId = 1;
+
+        function toggleForm() {
+            const formContainer = document.getElementById('formContainer');
+            formContainer.style.display = formContainer.style.display === 'none' || !formContainer.style.display ? 'block' : 'none';
+        }
+
+        function addAppointment() {
+            const fullName = document.getElementById('fullName').value;
+            const reason = document.getElementById('reason').value;
+            const appointmentGiven = document.getElementById('appointmentGiven').value;
+            const appointmentDay = document.getElementById('appointmentDay').value;
+            const appointmentTime = document.getElementById('appointmentTime').value;
+            const address = document.getElementById('address').value;
+            const contact = document.getElementById('contact').value;
+
+            if (fullName && reason && appointmentGiven && appointmentDay && appointmentTime && address && contact) {
+                const today = new Date();
+                const appointmentDate = new Date(appointmentDay);
+                const daysLate = Math.max(0, Math.ceil((today - appointmentDate) / (1000 * 60 * 60 * 24)));
+                const isLate = appointmentDate < today;
+
+                const table = document.getElementById('appointmentsTable').getElementsByTagName('tbody')[0];
+                const row = table.insertRow();
+
+                row.innerHTML = `
+                    <td>${appointmentId++}</td>
+                    <td>${fullName}</td>
+                    <td>${reason}</td>
+                    <td>${appointmentGiven}</td>
+                    <td>${appointmentDay}</td>
+                    <td>${appointmentTime}</td>
+                    <td>${address}</td>
+                    <td>${daysLate > 0 ? daysLate : 'On Time'}</td>
+                    <td>${contact}</td>
+                `;
+
+                const postponeButton = document.createElement('button');
+                postponeButton.textContent = 'Postpone';
+                postponeButton.classList.add('postpone-button');
+                postponeButton.onclick = () => postponeAppointment(row);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('delete-button');
+                deleteButton.onclick = () => deleteAppointment(row);
+
+                const actionsCell = row.insertCell();
+                actionsCell.appendChild(postponeButton);
+                actionsCell.appendChild(deleteButton);
+
+                document.getElementById('fullName').value = '';
+                document.getElementById('reason').value = '';
+                document.getElementById('appointmentGiven').value = '';
+                document.getElementById('appointmentDay').value = '';
+                document.getElementById('appointmentTime').value = '';
+                document.getElementById('address').value = '';
+                document.getElementById('contact').value = '';
+
+                toggleForm();
+                updatePendingFlag();
+            } else {
+                alert('Please fill in all the fields.');
+            }
+        }
+
+        function postponeAppointment(row) {
+            const appointmentDayCell = row.cells[4];
+            const newDate = prompt('Enter new appointment day (YYYY-MM-DD):', appointmentDayCell.textContent);
+            if (newDate) {
+                appointmentDayCell.textContent = newDate;
+                row.cells[8].innerHTML += ' <span class="postponed-flag">Postponed</span>';
+                updatePendingFlag();
+            }
+        }
+
+        function deleteAppointment(row) {
+            row.remove();
+            updatePendingFlag();
+        }
+
+        function updatePendingFlag() {
+            const today = new Date();
+            const rows = document.getElementById('appointmentsTable').rows;
+
+            let hasPending = false;
+            for (const row of rows) {
+                const appointmentDay = new Date(row.cells[4].textContent);
+                if (appointmentDay > today) {
+                    hasPending = true;
+                    break;
+                }
+            }
+
+            document.getElementById('pendingFlag').style.display = hasPending ? 'inline-block' : 'none';
+        }
+    </script>
+</body>
+</html>

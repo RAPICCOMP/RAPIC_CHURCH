@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership List</title>
+    <link rel="stylesheet" href="beersheba.css">
+</head>
+<body>
+
+<h1>GETHSEMANE</h1>
+<button class="add-member-button" onclick="addNewMember()">Add New Member</button>
+<table id="memberTable">
+    <thead>
+        <tr>
+            <th>ID Number</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows dynamically generated -->
+    </tbody>
+</table>
+
+<div id="membershipCard" class="container" style="display: none;">
+    <div class="header">
+        <h2>RESTORATION APOSTOLIC PENTECOSTAL REMNANT CHURCH INTERNATIONAL</h2>
+        <h3>NDOLA MAIN BRANCH - JERUSALEM CENTRE</h3>
+        <h4>ACTIVE MEMBERSHIP CARD</h4>
+    </div>
+    <div class="card-number" id="cardNumber"></div>
+    <table class="details-table">
+        <tr><th>NAME:</th><td id="memberName"></td></tr>
+        <tr><th>DATE OF BIRTH:</th><td id="memberDOB"></td></tr>
+        <tr><th>GENDER:</th><td id="memberGender"></td></tr>
+        <tr><th>DATE OF JOINING:</th><td id="memberJoining"></td></tr>
+        <tr><th>NATIONALITY:</th><td id="memberNationality"></td></tr>
+        <tr><th>TOWN:</th><td id="memberTown"></td></tr>
+        <tr><th>HOUSE NO.:</th><td id="memberHouse"></td></tr>
+    </table>
+
+    <!-- Monthly Contributions Section -->
+    <div class="monthly-contributions">
+        <h4>Monthly Contributions</h4>
+        <div id="contributions"></div>
+        <div class="renew-button">
+            <button id="renewButton" onclick="renewCard()">Renew Card</button>
+        </div>
+        <div class="close-button">
+            <button onclick="closeCard()">Close Card</button>
+        </div>
+    </div>
+</div>
+
+<script src="gethsemane.js"></script>
+
+</body>
+</html>

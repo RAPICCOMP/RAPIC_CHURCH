@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read our latest church publications, including newsletters, announcements, and spiritual insights.">
+    <title>Publications - Remnant Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: #f9f9f9;">
+    <!-- Best Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Replace with your smaller logo file -->
+                <img src="logo.jpg" alt="Church Logo">
+            </div>
+            <div class="church-name">
+                Restoration Apostolic Pentecostal Remnant Church
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="event.html">MISSION</a></li>
+                <li><a href="belief.html">VISION</a></li>
+                <li><a href="publications.html">FAITH</a></li>
+                <li><a href="contacts.html">PUBLICATIONS</a></li>
+                <li><a href="index.html">HISTORY</a></li>
+                <li><a href="mission.html">CONTACTS</a></li>
+               
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+        /* Best Navbar Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding-top: 70px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            animation: slideDown 0.7s forwards 0.3s;
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .navbar:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .navbar .logo img {
+            width: 80px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo:hover img {
+            transform: scale(1.1);
+        }
+
+        .navbar .church-name {
+            font-size: 16px;
+            color: #333;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .church-name:hover {
+            color: #f4d03f;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style-type: none;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeInLinks 1s ease-in-out 1.2s forwards;
+        }
+
+        @keyframes fadeInLinks {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #f4d03f;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-links a:hover {
+            color: #f4d03f;
+            transform: translateY(-3px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: #fff;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .slide {
+        display: none;
+        position: relative;
+    }
+
+    .hero-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 50px 20px;
+        border-radius: 8px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #fff;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        color: #fff;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        user-select: none;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .prev:hover, .next:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #000;
+    }
+    </style>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+
+    <!-- Publications Hero Section -->
+<section id="publications-hero" class="hero">
+    <div class="slideshow-container" style="position: relative; max-width: 100%; overflow: hidden;">
+        
+
+        <!-- Navigation Buttons -->
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+    </div>
+</section>
+
+<!-- Styles -->
+<style>
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .slide {
+        display: none;
+        position: relative;
+    }
+
+    .hero-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 50px 20px;
+        border-radius: 8px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #fff;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        color: #fff;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        user-select: none;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .prev:hover, .next:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #000;
+    }
+</style>
+<script>
+    let slideIndex = 0; // Initialize the slide index
+    const slides = document.querySelectorAll('.slide'); // Select all slides
+    const nextButton = document.querySelector('.next'); // Next button
+    const prevButton = document.querySelector('.prev'); // Previous button
+
+    // Function to show the current slide
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? 'block' : 'none'; // Show the active slide, hide others
+        });
+    }
+
+    // Function to navigate to the next slide
+    function nextSlide() {
+        slideIndex = (slideIndex + 1) % slides.length; // Increment index, loop back to 0 if at the end
+        showSlide(slideIndex);
+    }
+
+    // Function to navigate to the previous slide
+    function prevSlide() {
+        slideIndex = (slideIndex - 1 + slides.length) % slides.length; // Decrement index, loop to the last if at the beginning
+        showSlide(slideIndex);
+    }
+
+    // Set up auto-switching every 5 seconds
+    const autoSwitch = setInterval(nextSlide, 5000);
+
+    // Add event listeners for manual navigation
+    nextButton.addEventListener('click', () => {
+        nextSlide();
+        clearInterval(autoSwitch); // Stop auto-switching on manual navigation
+    });
+
+    prevButton.addEventListener('click', () => {
+        prevSlide();
+        clearInterval(autoSwitch); // Stop auto-switching on manual navigation
+    });
+
+    // Show the first slide on page load
+    showSlide(slideIndex);
+</script>
+
+
+    <!-- Publications Listing Section -->
+    <section id="publications-listing" style="padding: 50px 20px;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Latest Publications</h2>
+            <div class="publication-cards" style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                <div class="publication-card" style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
+                    <h3>January Newsletter</h3>
+                    <p style="font-size: 1.1rem;">Catch up on our latest updates and announcements in this month's newsletter.</p>
+                    <a href="#" class="btn" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read More</a>
+                </div>
+                <div class="publication-card" style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
+                    <h3>Article: Faith in Action</h3>
+                    <p style="font-size: 1.1rem;">An inspiring article on living out your faith in the community.</p>
+                    <a href="#" class="btn" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

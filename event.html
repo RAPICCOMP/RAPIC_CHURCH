@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to Remnant Church! Join us for inspiring worship, community events, and spiritual growth.">
+    <title>Home - Remnant Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-image: url('home-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <header class="header">
+        <!-- Navbar code -->
+        <nav class="navbar" style="background-color: #333; padding: 10px;">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="color: #fff; font-size: 2rem; font-weight: bold;">Remnant Church</h1>
+                <ul class="navbar-menu" style="list-style: none; display: flex; gap: 20px; margin-left: auto;">
+                    <li><a href="index.html" class="navbar-item" style="color: #fff; font-size: 1.1rem;">Home</a></li>
+                    <li><a href="events.html" class="navbar-item" style="color: #fff; font-size: 1.1rem;">Events</a></li>
+                    <li><a href="beliefs.html" class="navbar-item" style="color: #fff; font-size: 1.1rem;">Beliefs</a></li>
+                    <li><a href="publications.html" class="navbar-item" style="color: #fff; font-size: 1.1rem;">Publications</a></li>
+                    <li><a href="contact.html" class="navbar-item" style="color: #fff; font-size: 1.1rem;">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container" style="text-align: left; color: white; padding-top: 100px; margin-left: 50px;">
+        <h1 style="font-size: 3rem;">Welcome to Remnant Church!</h1>
+        <p style="font-size: 1.5rem;">Join us for inspiring worship, community events, and spiritual growth.</p>
+    </div>
+</body>
+
+</html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upcoming events at Remnant Church. Join us for inspiring services, gatherings, and community outreach.">
+    <title>Upcoming Events - Remnant Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-image: url('events-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <header class="header">
+        <!-- Navbar code remains unchanged -->
+    </header>
+
+    <!-- Events Hero Section -->
+    <section id="events-hero" class="hero" style="background-image: url('events-hero.jpg');">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1 class="hero-title">Upcoming Events</h1>
+                <p class="hero-subtitle">Join us for our vibrant gatherings and make memories that will last a lifetime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Listing Section -->
+    <section id="events-listing" style="background-color: rgba(0, 0, 0, 0.7); padding: 50px 20px; color: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 40px;">Upcoming Church Events</h2>
+            
+            <div class="event-cards" style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                <!-- Example Event 1 -->
+                <div class="event-card" style="background-color: #333; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
+                    <h3 style="color: #fff;">Youth Fellowship</h3>
+                    <p style="font-size: 1.1rem; color: #ddd;">A gathering for the youth of our church to connect, grow, and worship together.</p>
+                    <p style="font-weight: bold; color: #ff6f61;">Date: February 25, 2025</p>
+                    <a href="#" class="btn" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Register Now</a>
+                </div>
+
+                <!-- Example Event 2 -->
+                <div class="event-card" style="background-color: #333; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
+                    <h3 style="color: #fff;">Community Outreach</h3>
+                    <p style="font-size: 1.1rem; color: #ddd;">Join us as we serve the community and spread the love of Christ.</p>
+                    <p style="font-weight: bold; color: #ff6f61;">Date: March 12, 2025</p>
+                    <a href="#" class="btn" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background slideshow (Fixed and Non-scrollable) -->
+    <div class="background-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <div class="slideshow" style="background-image: url('event-slide1.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="slideshow" style="background-image: url('event-slide2.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="slideshow" style="background-image: url('event-slide3.jpg'); background-size: cover; background-position: center;"></div>
+    </div>
+
+    <script>
+        // Slideshow functionality
+        let slides = document.querySelectorAll('.slideshow');
+        let currentSlide = 0;
+        
+        setInterval(function () {
+            slides[currentSlide].style.opacity = 0;
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].style.opacity = 1;
+        }, 5000);
+    </script>
+
+</body>
+</html>

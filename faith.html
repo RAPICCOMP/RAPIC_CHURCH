@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #81d4fa);
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #00796b;
+            color: white;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #00796b;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+            }
+
+            .navbar .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .content-container {
+            margin: 40px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #004d40;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .read-more {
+            color: #00796b;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .extra-content {
+            display: none;
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Corporate Vision</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mission.html">Mission</a></li>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="faith.html">Faith</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <section class="content-container">
+        <h2>Our Faith</h2>
+        <p>Faith is the foundation of everything we do. It is the belief in a higher purpose and the strength to pursue it with conviction. We believe in trusting God in all circumstances.</p>
+        <span class="read-more" onclick="toggleReadMore()">Read More</span>
+        <div class="extra-content">
+            <p>Faith gives us hope, courage, and perseverance. It is through faith that we achieve greatness, overcome obstacles, and make a lasting impact in the world.</p>
+            <p>Our community thrives on the collective faith of its members. Together, we build a stronger, more compassionate world.</p>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleReadMore() {
+            const extraContent = document.querySelector('.extra-content');
+            extraContent.style.display = extraContent.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

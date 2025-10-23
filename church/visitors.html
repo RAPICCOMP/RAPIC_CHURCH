@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        td {
+            color: #555;
+        }
+        .register-button, .delete-button {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .register-button {
+            background-color: #180640;
+            color: white;
+        }
+        .register-button:hover {
+            background-color: #271341;
+        }
+        .delete-button {
+            background-color: #600d15;
+            color: white;
+        }
+        .delete-button:hover {
+            background-color: #440b0f;
+        }
+        .add-visitor-button {
+            display: block;
+            margin: 20px auto;
+            background-color: #041f3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        .add-visitor-button:hover {
+            background-color: #270a60;
+        }
+    </style>
+</head>
+<body background="church.jpg">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="Church Logo">
+        </div>
+        <h1>Restoration Apostolic Pentecostal Remnant Church</h1>
+        <div>
+
+        </div>
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="branches.html">Branches</a></li>
+                <li><a href="members.html">Members</a></li>
+    
+                
+                <li><a href="visitors.html">Visitors</a></li>
+                <li><a href="believers.html">Believers</a></li>
+                <li><a href="apointment.html">Appointments</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Visitor List Table -->
+    <h1>Visitor's List</h1>
+    <button class="add-visitor-button" onclick="addVisitor()">Add Visitor</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Visitor Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Preferred Cell Group</th>
+                <th>Date of Visit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="visitor-table-body">
+            <tr>
+                <td id="visitor-name-1">John Doe</td>
+                <td>(123) 456-7890</td>
+                <td>johndoe@example.com</td>
+                <td id="visitor-cell-1">Group A</td>
+                <td>2025-01-01</td>
+                <td>
+                    <button class="register-button" onclick="registerAsMember(1)">Register as Member</button>
+                    <button class="delete-button" onclick="deleteVisitor(1)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td id="visitor-name-2">Jane Smith</td>
+                <td>(321) 654-9870</td>
+                <td>janesmith@example.com</td>
+                <td id="visitor-cell-2">Group B</td>
+                <td>2025-01-02</td>
+                <td>
+                    <button class="register-button" onclick="registerAsMember(2)">Register as Member</button>
+                    <button class="delete-button" onclick="deleteVisitor(2)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let visitorCount = 2; // Tracks the number of visitors
+
+        function registerAsMember(visitorId) {
+            const visitorName = document.getElementById(`visitor-name-${visitorId}`).innerText;
+            const cellGroup = document.getElementById(`visitor-cell-${visitorId}`).innerText;
+
+            alert(`${visitorName} is being registered as a member in ${cellGroup}.`);
+            
+            // Redirect to branches.html with the specific cell group highlighted
+            window.location.href = `branches.html?highlight=${encodeURIComponent(cellGroup)}`;
+        }
+
+        function deleteVisitor(visitorId) {
+            const row = document.getElementById(`visitor-name-${visitorId}`).parentNode;
+            row.parentNode.removeChild(row); // Remove the visitor row from the table
+            alert(`Visitor has been removed from the list.`);
+        }
+
+        function addVisitor() {
+            const visitorName = prompt("Enter Visitor's Name:");
+            const phone = prompt("Enter Visitor's Phone Number:");
+            const email = prompt("Enter Visitor's Email:");
+            const cellGroup = prompt("Enter Visitor's Preferred Cell Group:");
+            const dateOfVisit = prompt("Enter Date of Visit (YYYY-MM-DD):");
+
+            if (visitorName && phone && email && cellGroup && dateOfVisit) {
+                visitorCount++;
+                const tableBody = document.getElementById("visitor-table-body");
+                const newRow = document.createElement("tr");
+
+                newRow.innerHTML = `
+                    <td id="visitor-name-${visitorCount}">${visitorName}</td>
+                    <td>${phone}</td>
+                    <td>${email}</td>
+                    <td id="visitor-cell-${visitorCount}">${cellGroup}</td>
+                    <td>${dateOfVisit}</td>
+                    <td>
+                        <button class="register-button" onclick="registerAsMember(${visitorCount})">Register as Member</button>
+                        <button class="delete-button" onclick="deleteVisitor(${visitorCount})">Delete</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(newRow);
+            } else {
+                alert("All fields are required to add a new visitor.");
+            }
+        }
+    </script>
+</body>
+</html>

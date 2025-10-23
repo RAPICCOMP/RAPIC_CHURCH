@@ -1,0 +1,29 @@
+# Project dependencies and environment
+vendor/
+node_modules/
+.env
+.env.*
+
+# Credentials and data (avoid committing secrets)
+db_connect.php
+church_db.sql
+uploads/
+
+# Archives and large binaries
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.mp4
+*.mov
+*.avi
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log

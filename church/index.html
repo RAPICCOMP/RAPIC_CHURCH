@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px; /* Add padding for space on the sides */
+            background-color: #f8f9fa; /* Light background for contrast */
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #010109;
+            padding: 5px; /* Space around the navbar */
+            margin-top: 3px; /* Adds space above and below the navbar */
+            width: calc(100% - 40px); /* Leave space on the sides */
+            border-radius: 10px; /* Rounded corners for a cleaner look */
+            text-align: left; /* Center-align navbar content */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+        }
+
+        .navbar nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar nav ul li {
+            margin: 0 15px;
+        }
+
+        .navbar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .navbar nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Banner Styling */
+        .banner {
+            background-color: #7e818357;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 20px; /* Space above the banner */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .banner h2 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Main Content */
+        .home-content {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 20px; /* Add space above the content */
+            
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .home-content h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .home-content p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Responsive Design for Mobile Devices */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            .navbar ul li {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Check if the user is logged in
+        if (!localStorage.getItem("loggedIn")) {
+            window.location.href = "login.html";  // Redirect to login page if not logged in
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("loggedIn");  // Clear login status
+            window.location.href = "login.html";  // Redirect to login page after logout
+        }
+    </script>
+
+    <!-- Navbar -->
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">
+        <img src="logo.jpg" alt="Church Logo">
+    </div>
+    <h1>Restoration Apostolic Pentecostal Remnant Church</h1>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="branches.html">Branches</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="visitors.html">Visitors</a></li>
+                <li><a href="believers.html">Believers</a></li>
+                <li><a href="apointment.html">Appointments</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+    <!-- Banner -->
+    <div class="banner">
+        <h2>Church Management System</h2>
+    </div>
+
+    <!-- Main Content -->
+    <section class="home-content">
+        <h2>Welcome To Restoration Appolstolic Pentecostal Remnant Church</h2>
+        
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>

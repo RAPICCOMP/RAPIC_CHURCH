@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        /* Merged CSS (same as faith.html) */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            color: #444;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #34a853;
+            color: white;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ffa500;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #34a853;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .about-container {
+            margin: 40px;
+            padding: 20px;
+            background: linear-gradient(45deg, #ffffff, #e8f0fe);
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #2a2a72;
+            text-transform: uppercase;
+            position: relative;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #ffa500;
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Corporate Vision</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mission.html">Mission</a></li>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="faith.html">Faith</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="contacts.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <section class="about-container">
+        <h2>About Us</h2>
+        <p>We are a passionate community of believers committed to spreading the gospel of Jesus Christ. Our mission is to reach out to people from all walks of life, helping them experience the transformative power of God’s love and grace. With a focus on faith, fellowship, and service, we strive to impact lives and spread positivity to the world.</p>
+        <p>We envision a church where individuals grow in their faith, find support, and become part of a global movement of believers making a difference in the world.</p>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the beliefs of Remnant Church. Discover our core values and what we stand for as a faith community.">
+    <title>Our Beliefs - Remnant Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: #f4f4f4;">
+    <header class="header">
+        <!-- Navbar code remains unchanged -->
+    </header>
+
+    <!-- Beliefs Hero Section -->
+    <section id="beliefs-hero" class="hero" style="background-image: url('beliefs-bg.jpg');">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1 class="hero-title">Our Beliefs</h1>
+                <p class="hero-subtitle">Learn about the core values and doctrines that guide us as a faith community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beliefs Content Section -->
+    <section id="beliefs-content" style="padding: 50px 20px;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Core Beliefs of Remnant Church</h2>
+
+            <div class="beliefs-list" style="display: flex; gap: 30px; flex-wrap: wrap;">
+                <div style="flex: 1 1 calc(50% - 20px); background-color: #072e55; color: white; padding: 20px; border-radius: 8px;">
+                    <h3>God's Word</h3>
+                    <p style="font-size: 1.1rem;">We believe in the Bible as the inspired, inerrant Word of God, which guides us in our daily lives and spiritual growth.</p>
+                </div>
+
+                <div style="flex: 1 1 calc(50% - 20px); background-color: #072e55; color: white; padding: 20px; border-radius: 8px;">
+                    <h3>Salvation Through Christ</h3>
+                    <p style="font-size: 1.1rem;">We believe in salvation by grace through faith in Jesus Christ as the only way to eternal life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
