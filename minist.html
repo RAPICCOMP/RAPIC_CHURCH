@@ -514,39 +514,6 @@
             <img src="pyy1.jpg" alt="Men's Section">
             <h3>Remnant Desciple's Of Jesus</h3>
             <a href="men.html">Learn More</a>
-        </div>
-
-        
-    </div>
-
-    <?php
-include('db_connect.php');
-
-// Fetch ministries from the database
-$query = "SELECT * FROM ministries";
-$result = mysqli_query($conn, $query);
-
-if (!$result) {
-    die("Error: " . mysqli_error($conn));
-}
-
-?>
-
-<div class="cards-section">
-    <?php while ($row = mysqli_fetch_assoc($result)): ?>
-        <div class="card">
-            <img src="<?= $row['image'] ?>" alt="<?= $row['name'] ?>">
-            <h3><?= $row['name'] ?></h3>
-            <a href="<?= $row['link'] ?>">Learn More</a>
-        </div>
-    <?php endwhile; ?>
-</div>
-
-
-
-    <div class="cards-section">
-
-        
 
 
         <div class="card">
