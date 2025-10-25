@@ -699,9 +699,10 @@
         .btn-secondary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
 
         /* Thin navbar brand marquee */
-        .brand-marquee { flex: 1 1 auto; overflow: hidden; height: 24px; display: flex; align-items: center; margin: 0 8px; }
-        .brand-track { display: inline-block; white-space: nowrap; padding-left: 100%; animation: brand-scroll 16s linear infinite; color: #333; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-        @keyframes brand-scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+        .brand-marquee { flex: 1 1 auto; min-width: 0; overflow: hidden; height: 24px; display: flex; align-items: center; margin: 0 8px; }
+        .brand-track { display: inline-block; white-space: nowrap; transform: translateX(100%); animation: brand-scroll 12s linear infinite; color: #333; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; will-change: transform; }
+        @keyframes brand-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @media (prefers-reduced-motion: reduce) { .brand-track { animation: none; } }
 
     </style>
 </head>
