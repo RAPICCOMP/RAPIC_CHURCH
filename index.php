@@ -46,7 +46,7 @@ include 'db_connect.php';
 
         .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px 20px; position: fixed; top: 0; width: 100%; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s; opacity: 0; animation: slideDown 0.7s forwards 0.3s; }
         @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-        .navbar:hover { box-shadow: 0 8px 12px rgba(0,0,0,0.2); transform: translateY(-5px); }
+        .navbar:hover { box-shadow: 0 8px 12px rgba(0,0,0,0.12); }
         .navbar .logo img { width: 80px; height: auto; transition: transform 0.3s; }
         .navbar .logo:hover img { transform: scale(1.1); }
         .navbar h2 { font-size: 16px; color: #333; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; transition: color 0.3s; }
@@ -265,7 +265,6 @@ include 'db_connect.php';
             .navbar { flex-direction: row; padding: 1px 5px; min-height: 24px; }
             .navbar h2 { font-size: 0.8rem; line-height: 1.1; padding: 1px 0; margin: 0 6px; word-break: break-word; white-space: normal; text-align: center; }
             .navbar h2 {
-                animation: marquee 16s linear infinite;
                 overflow: hidden;
                 white-space: nowrap;
                 display: block;
@@ -292,6 +291,16 @@ include 'db_connect.php';
                 margin-bottom: 16px !important;
             }
         }
+        .hero { position: relative; width: 100%; min-height: 60vh; display: flex; align-items: center; justify-content: center; color: #fff; background-size: cover; background-position: center; background-repeat: no-repeat; }
+        .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35)); }
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; padding: 40px 20px; text-align: center; }
+        .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 12px; }
+        .hero p { font-size: 1.1rem; opacity: 0.95; margin-bottom: 22px; }
+        .hero-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .btn-primary { background: #f4d03f; color: #1c2833; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #2c3e50; color: #fff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; border: 1px solid rgba(255,255,255,0.25); }
+        .btn-secondary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
     </style>
 </head>
 <body>
@@ -314,8 +323,7 @@ include 'db_connect.php';
                 }
                 .church-name-marquee span {
                     display:inline-block;
-                    padding-left:100%;
-                    animation: marquee 16s linear infinite;
+                    padding-left:0;
                     font-size: 16px;
                     color: #333;
                     font-weight: 700;
@@ -329,13 +337,13 @@ include 'db_connect.php';
                 @media (max-width: 768px) {
                     .church-name-marquee span {
                         font-size: 0.95rem;
-                        animation: marquee 16s linear infinite;
+                        
                     }
                 }
                 @media (max-width: 480px) {
                     .church-name-marquee span {
                         font-size: 0.8rem;
-                        animation: marquee 16s linear infinite;
+                        
                     }
                 }
                 </style>
@@ -369,13 +377,25 @@ include 'db_connect.php';
 
     <script src="app.js"></script>
 
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('youth.jpg');">
+        <div class="hero-content">
+            <h1>Welcoming You Home</h1>
+            <p>Join us in worship, community, and growth in Christ. Discover sermons, connect with ministries, and plan your visit.</p>
+            <div class="hero-actions">
+                <a href="sermon.php" class="btn-primary">Watch Sermons</a>
+                <a href="#contact" class="btn-secondary">Plan Your Visit</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Carousel Section -->
     <div class="slideshow-container">
         <div class="carousel">
             <div class="carousel-item active" style="background-image: url('youth.jpg');"><div class="overlay-text">Welcome to Our Church</div></div>
             <div class="carousel-item" style="background-image: url('chieftainess.jpg');"><div class="overlay-text">Thank You For Coming</div></div>
             <div class="carousel-item" style="background-image: url('womenoffaith5.jpg');"><div class="overlay-text">Feel the Holy Spirit</div></div>
-            <div class="carousel-item active" style="background-image: url('director2.jpg');"><div class="overlay-text">Pray Until Something</div></div>
+            <div class="carousel-item" style="background-image: url('director2.jpg');"><div class="overlay-text">Pray Until Something</div></div>
             <div class="carousel-item" style="background-image: url('power.jpeg');"><div class="overlay-text">Experience The Power Of God</div></div>
             <div class="carousel-item" style="background-image: url('womenoffaith10.jpeg');"><div class="overlay-text"> Praise His Holy Name </div></div>
         </div>

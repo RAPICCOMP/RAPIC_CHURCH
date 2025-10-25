@@ -704,6 +704,18 @@
         @keyframes brand-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         @media (prefers-reduced-motion: reduce) { .brand-track { animation: none; } }
 
+        /* Mobile polish: hero sizing and slideshow visibility */
+        @media screen and (max-width: 768px) {
+          .hero { min-height: 55vh; }
+          .hero-content { padding: 24px 16px; }
+          .hero h1 { font-size: 1.6rem; margin-bottom: 8px; }
+          .hero p { font-size: 0.95rem; margin-bottom: 14px; }
+          .hero-actions { gap: 8px; }
+          .btn-primary, .btn-secondary { padding: 8px 12px; font-size: 0.9rem; border-radius: 6px; }
+          /* Prevent slideshow images from being cropped on small screens */
+          .showcase .show-slide { background-size: contain !important; background-repeat: no-repeat; background-color: #000; }
+        }
+
     </style>
 </head>
 
