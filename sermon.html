@@ -585,9 +585,10 @@
             </div>
         </section>
 
-        <h2>Browse Sermons</h2>
+        <h2 style="font-size:1.4rem; color:#23295e; margin: 16px 0 8px;">Browse Sermons</h2>
 </div>
 
+<div class="browse-dropdowns">
 <div class="dropdown" onmouseleave="closeDropdown('myDropdown2')">
   <button onclick="toggleDropdown('myDropdown2')" class="dropbtn">Browse Speakers ▾</button>
   <div id="myDropdown2" class="dropdown-content">
@@ -604,6 +605,7 @@
     <a href="#">Topic 2</a>
     <a href="#">Topic 3</a>
   </div>
+</div>
 </div>
 
         <div class="row">
@@ -711,6 +713,18 @@
       @media (max-width: 767px) { .videos-row .video-card { padding-top: 70% !important; } }
       @media (min-width: 768px) and (max-width: 1023px) { .videos-row .video-card { padding-top: 75% !important; } }
       @media (min-width: 1024px) { .videos-row .video-card { padding-top: 78% !important; } }
+      /* Browse dropdowns responsive layout */
+      .browse-dropdowns { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:16px; margin: 8px auto 20px; max-width: 900px; padding: 0 12px; }
+      .browse-dropdowns .dropdown { flex:1 1 260px; max-width:320px; min-width:220px; display:flex; flex-direction:column; align-items:center; }
+      /* Card grid polish */
+      .row { display:flex; flex-wrap:wrap; gap:20px; }
+      .column { flex: 1 1 320px; max-width: 1fr; }
+      @media (max-width: 768px){
+        .row { display:flex; flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x mandatory; gap:16px; padding: 8px 8px 16px; }
+        .column { flex: 0 0 260px; scroll-snap-align:start; }
+      }
+      .card { border: 1px solid #e9ecef; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); transition: transform .2s ease, box-shadow .2s ease; }
+      .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
