@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restoration Apostolic Pentecostal Remnant Church</title>
-    <link rel="stylesheet" href="style.css">
+    
     <style>
         /* Global Styles */
         * {
@@ -866,6 +866,11 @@
                 const open = nav.classList.contains('active');
                 burgerPrimary?.setAttribute('aria-expanded', open ? 'true' : 'false');
                 burgerAlt?.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (open) {
+                    document.body.classList.add('menu-open');
+                } else {
+                    document.body.classList.remove('menu-open');
+                }
                 if (!open) {
                     // closing menu: also close any open submenus
                     nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
@@ -882,6 +887,7 @@
                 burgerAlt?.classList.remove('active');
                 burgerPrimary?.setAttribute('aria-expanded', 'false');
                 burgerAlt?.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
                 nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
             }));
 
@@ -896,6 +902,7 @@
                     burgerAlt?.classList.remove('active');
                     burgerPrimary?.setAttribute('aria-expanded', 'false');
                     burgerAlt?.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-open');
                     nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
                 }
             });
@@ -908,6 +915,7 @@
                     burgerAlt?.classList.remove('active');
                     burgerPrimary?.setAttribute('aria-expanded', 'false');
                     burgerAlt?.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-open');
                     nav?.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
                 }
             });
