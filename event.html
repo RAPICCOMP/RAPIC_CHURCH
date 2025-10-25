@@ -18,11 +18,7 @@
     <header>
         <nav class="navbar" style="background:#fff; padding:10px 16px; position:fixed; top:0; left:0; right:0; z-index:1000; box-shadow:0 4px 6px rgba(0,0,0,.1);">
             <a href="index.html" class="logo"><img src="logo.jpg" alt="Church Logo" style="height:40px; width:auto;"></a>
-            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="bar" style="display:block; width:26px; height:3px; margin:4px 0; background:#333; border-radius:5px;"></span>
-                <span class="bar" style="display:block; width:26px; height:3px; margin:4px 0; background:#333; border-radius:5px;"></span>
-                <span class="bar" style="display:block; width:26px; height:3px; margin:4px 0; background:#333; border-radius:5px;"></span>
-            </div>
+            
             <div class="brand-marquee" aria-label="Church name" style="flex:1 1 auto; min-width:0; overflow:hidden; height:24px; display:flex; align-items:center; margin:0 8px;">
                 <span class="brand-track" style="display:inline-block; white-space:nowrap; transform:translateX(100%); animation:brand-scroll 12s linear infinite; color:#333; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase;">Restoration Apostolic Pentecostal Remnant Church</span>
             </div>
@@ -57,31 +53,37 @@
       document.addEventListener('DOMContentLoaded', () => {
         const nav = document.querySelector('.nav-links');
         const burger = document.getElementById('hamburger');
-        const burgerAlt = document.getElementById('mobile-menu');
         const toggle = () => {
           nav?.classList.toggle('active');
           burger?.classList.toggle('active');
-          burgerAlt?.classList.toggle('active');
           const open = nav?.classList.contains('active');
           burger?.setAttribute('aria-expanded', open ? 'true':'false');
-          burgerAlt?.setAttribute('aria-expanded', open ? 'true':'false');
           document.body.classList.toggle('menu-open', !!open);
         };
         burger?.addEventListener('click', toggle);
-        if(burgerAlt && burgerAlt!==burger) burgerAlt.addEventListener('click', toggle);
-        nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ nav.classList.remove('active'); burger?.classList.remove('active'); burgerAlt?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); burgerAlt?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }));
-        document.addEventListener('click',(e)=>{ if(!nav) return; const t=e.target; const inside = nav.contains(t)||burger?.contains(t)||burgerAlt?.contains(t); if(!inside){ nav.classList.remove('active'); burger?.classList.remove('active'); burgerAlt?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); burgerAlt?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }});
-        window.addEventListener('resize',()=>{ if(window.innerWidth>768){ nav?.classList.remove('active'); burger?.classList.remove('active'); burgerAlt?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); burgerAlt?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }});
+        nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ nav.classList.remove('active'); burger?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }));
+        document.addEventListener('click',(e)=>{ if(!nav) return; const t=e.target; const inside = nav.contains(t)||burger?.contains(t); if(!inside){ nav.classList.remove('active'); burger?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }});
+        window.addEventListener('resize',()=>{ if(window.innerWidth>768){ nav?.classList.remove('active'); burger?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }});
       });
     </script>
 
     <!-- Modern Events Hero -->
     <section class="events-hero" style="position:relative; margin-top:72px;">
-      <div class="events-hero-bg" style="position:absolute; inset:0; background:url('events-hero.jpg') center/cover no-repeat;"></div>
+      <div class="events-hero-bg" style="position:absolute; inset:0; background:url('youth.jpg') center/cover no-repeat;"></div>
       <div class="events-hero-overlay" style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));"></div>
       <div class="events-hero-content" style="position:relative; z-index:1; padding:52px 20px; max-width:1100px; margin:0 auto; text-align:center; color:#fff;">
         <h1 style="font-size:2.4rem; line-height:1.2; margin-bottom:10px;">Upcoming Events</h1>
         <p style="font-size:1.1rem; opacity:.95; max-width:760px; margin:0 auto;">Gather with us for worship, prayer, and community. Discover what’s happening this week and beyond.</p>
+      </div>
+    </section>
+
+    <!-- Vibrant Gatherings Banner -->
+    <section class="events-hero" style="position:relative;">
+      <div class="events-hero-bg" style="position:absolute; inset:0; background:url('womenoffaith5.jpg') center/cover no-repeat;"></div>
+      <div class="events-hero-overlay" style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));"></div>
+      <div class="events-hero-content" style="position:relative; z-index:1; padding:40px 20px; max-width:1100px; margin:0 auto; text-align:center; color:#fff;">
+        <h2 style="font-size:1.8rem; line-height:1.2; margin-bottom:8px;">Join us for our vibrant gatherings</h2>
+        <p style="font-size:1rem; opacity:.95; max-width:760px; margin:0 auto;">Make memories that will last a lifetime.</p>
       </div>
     </section>
 
@@ -152,111 +154,3 @@
         </div>
       </div>
     </section>
-</body>
-
-</html>
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Upcoming events at Remnant Church. Join us for inspiring services, gatherings, and community outreach.">
-    <title>Upcoming Events - Remnant Church</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-
-<body style="background-image: url('events-bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
-    <header class="header">
-        <!-- Navbar code remains unchanged -->
-    </header>
-
-    <!-- Events Hero Section -->
-    <section id="events-hero" class="hero" style="background-image: url('events-hero.jpg');">
-        <div class="hero-overlay">
-            <div class="container">
-                <h1 class="hero-title">Upcoming Events</h1>
-                <p class="hero-subtitle">Join us for our vibrant gatherings and make memories that will last a lifetime.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Listing Section -->
-    <section id="events-listing" style="background-color: rgba(0, 0, 0, 0.7); padding: 50px 20px; color: white;">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 40px;">Upcoming Church Events</h2>
-            
-            <div class="event-cards" style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
-                <!-- Example Event 1 -->
-                <div class="event-card" style="background-color: #333; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
-                    <h3 style="color: #fff;">Youth Fellowship</h3>
-                    <p style="font-size: 1.1rem; color: #ddd;">A gathering for the youth of our church to connect, grow, and worship together.</p>
-                    <p style="font-weight: bold; color: #ff6f61;">Date: February 25, 2025</p>
-                    <a href="#" class="btn" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Register Now</a>
-                </div>
-
-                <!-- Example Event 2 -->
-                <div class="event-card" style="background-color: #333; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
-                    <h3 style="color: #fff;">Community Outreach</h3>
-                    <p style="font-size: 1.1rem; color: #ddd;">Join us as we serve the community and spread the love of Christ.</p>
-                    <p style="font-weight: bold; color: #ff6f61;">Date: March 12, 2025</p>
-                    <a href="#" class="btn" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Join Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Background slideshow (Fixed and Non-scrollable) -->
-    <div class="background-slideshow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
-        <div class="slideshow" style="background-image: url('event-slide1.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="slideshow" style="background-image: url('event-slide2.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="slideshow" style="background-image: url('event-slide3.jpg'); background-size: cover; background-position: center;"></div>
-    </div>
-
-    <script>
-        // Slideshow functionality
-        let slides = document.querySelectorAll('.slideshow');
-        let currentSlide = 0;
-        
-        setInterval(function () {
-            slides[currentSlide].style.opacity = 0;
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].style.opacity = 1;
-        }, 5000);
-        
-        // Mobile nav: toggle and close on link/outside clicks (supports .nav-links and .navbar-menu)
-        document.addEventListener('DOMContentLoaded', () => {
-            const nav = document.querySelector('.nav-links') || document.querySelector('.navbar-menu');
-            const burger = document.getElementById('hamburger') || document.getElementById('mobile-menu');
-            const mobileBurger = document.getElementById('mobile-menu');
-
-            const toggleMenu = () => {
-                if (nav) nav.classList.toggle('active');
-                if (burger) burger.classList.toggle('active');
-                if (mobileBurger && mobileBurger !== burger) mobileBurger.classList.toggle('active');
-            };
-
-            if (burger) burger.addEventListener('click', toggleMenu);
-            if (mobileBurger && mobileBurger !== burger) mobileBurger.addEventListener('click', toggleMenu);
-
-            nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-                nav.classList.remove('active');
-                burger?.classList.remove('active');
-                mobileBurger?.classList.remove('active');
-            }));
-
-            document.addEventListener('click', (e) => {
-                if (!nav) return;
-                const inside = nav.contains(e.target) || (burger && burger.contains(e.target)) || (mobileBurger && mobileBurger.contains(e.target));
-                if (!inside) {
-                    nav.classList.remove('active');
-                    burger?.classList.remove('active');
-                    mobileBurger?.classList.remove('active');
-                }
-            });
-        });
-    </script>
-
-</body>
-</html>
