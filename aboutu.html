@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -175,11 +175,7 @@
             <a href="index.html" class="logo">
                 <img src="logo.jpg" alt="Church Logo">
             </a>
-            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            
             <div class="brand-marquee" aria-label="Church name">
                 <span class="brand-track">Restoration Apostolic Pentecostal Remnant Church</span>
             </div>
@@ -202,496 +198,190 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.querySelector('.nav-links');
-            const burgerPrimary = document.getElementById('hamburger');
-            const burgerAlt = document.getElementById('mobile-menu');
+            const burger = document.getElementById('hamburger');
 
-            const openClose = () => {
+            const toggleMenu = () => {
                 if (!nav) return;
                 nav.classList.toggle('active');
-                burgerPrimary?.classList.toggle('active');
-                if (burgerAlt && burgerAlt !== burgerPrimary) burgerAlt.classList.toggle('active');
+                burger?.classList.toggle('active');
                 const open = nav.classList.contains('active');
-                burgerPrimary?.setAttribute('aria-expanded', open ? 'true' : 'false');
-                burgerAlt?.setAttribute('aria-expanded', open ? 'true' : 'false');
-                if (open) {
-                    document.body.classList.add('menu-open');
-                } else {
-                    document.body.classList.remove('menu-open');
-                }
+                burger?.setAttribute('aria-expanded', open ? 'true' : 'false');
+                document.body.classList.toggle('menu-open', open);
             };
 
-            burgerPrimary?.addEventListener('click', openClose);
-            if (burgerAlt && burgerAlt !== burgerPrimary) burgerAlt.addEventListener('click', openClose);
+            burger?.addEventListener('click', toggleMenu);
 
-            // Close on link click (mobile)
             nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
                 nav.classList.remove('active');
-                burgerPrimary?.classList.remove('active');
-                burgerAlt?.classList.remove('active');
-                burgerPrimary?.setAttribute('aria-expanded', 'false');
-                burgerAlt?.setAttribute('aria-expanded', 'false');
+                burger?.classList.remove('active');
+                burger?.setAttribute('aria-expanded', 'false');
                 document.body.classList.remove('menu-open');
             }));
 
-            // Close when clicking outside
             document.addEventListener('click', (e) => {
                 if (!nav) return;
                 const target = e.target;
-                const inside = nav.contains(target) || burgerPrimary?.contains(target) || burgerAlt?.contains(target);
+                const inside = nav.contains(target) || burger?.contains(target);
                 if (!inside) {
                     nav.classList.remove('active');
-                    burgerPrimary?.classList.remove('active');
-                    burgerAlt?.classList.remove('active');
-                    burgerPrimary?.setAttribute('aria-expanded', 'false');
-                    burgerAlt?.setAttribute('aria-expanded', 'false');
+                    burger?.classList.remove('active');
+                    burger?.setAttribute('aria-expanded', 'false');
                     document.body.classList.remove('menu-open');
                 }
             });
 
-            // Close on resize to desktop
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 768) {
                     nav?.classList.remove('active');
-                    burgerPrimary?.classList.remove('active');
-                    burgerAlt?.classList.remove('active');
-                    burgerPrimary?.setAttribute('aria-expanded', 'false');
-                    burgerAlt?.setAttribute('aria-expanded', 'false');
+                    burger?.classList.remove('active');
+                    burger?.setAttribute('aria-expanded', 'false');
                     document.body.classList.remove('menu-open');
                 }
             });
         });
     </script>
-</body>
-</html>
 
+    <!-- About Hero -->
+    <section class="about-hero" style="position:relative; margin-top:72px;">
+        <div style="position:absolute; inset:0; background:url('everyone.jpg') center/cover no-repeat;"></div>
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));"></div>
+        <div style="position:relative; z-index:1; padding:52px 20px; max-width:1100px; margin:0 auto; text-align:center; color:#fff;">
+            <h1 style="font-size:2.4rem; line-height:1.2; margin-bottom:10px;">About Our Church</h1>
+            <p style="font-size:1.1rem; opacity:.95; max-width:760px; margin:0 auto;">We exist to glorify Jesus, disciple believers, and serve our community with love and truth.</p>
+        </div>
+    </section>
 
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission & Vision</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #ffffff, #f0f0f0);
-            color: #444;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        
-        /* Section Styling */
-        #mission-vision {
-            margin: 40px;
-            text-align: center;
-            animation: fadeIn 1.5s ease;
-            background: linear-gradient(45deg, #ffffff, #e8f0fe);
-            padding: 40px;
-            border-radius: 10px;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2a2a72;
-            text-transform: uppercase;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background-color: #ffa500;
-            display: block;
-            margin: 10px auto 0;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            color: #2a2a72;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: slideIn 0.5s ease-out;
-            position: relative;
-            overflow-y: auto;
-            max-height: 90%;
-        }
-
-        .modal-content h3 {
-            color: #2a2a72;
-        }
-
-        .modal-content p {
-            margin-bottom: 15px;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #444;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #e0e0e0;
-            }
-
-            .card {
-                background: #1e1e1e;
-            }
-
-            .modal-content {
-                background: #1e1e1e;
-                color: #e0e0e0;
-            }
-        }
-
-        .footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-}
-
-.footer-container {
-  width: 960px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.footer-column {
-  flex: 1;
-  margin: 0 20px;
-}
-
-.footer-column h3 {
-  margin-bottom: 10px;
-}
-
-.footer-column p {
-  margin: 5px 0;
-}
-
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-column ul li {
-  margin-bottom: 5px;
-}
-
-.social-icons {
-  display: flex;
-}
-
-.social-icons a {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 0 5px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  color: #fff;
-  background-color: #3b5998; /* Facebook */
-}
-
-.social-icons a:nth-child(2) {
-  background-color: #1da1f2; /* Twitter */
-}
-
-.social-icons a:nth-child(3) {
-  background-color: #e1306c; /* Instagram */
-}
-
-.social-icons a:nth-child(4) {
-  background-color: #ff0000; /* YouTube */
-}
-
-    </style>
-</head>
-<body>
-    
-    <section id="mission-vision">
-        <h2>Mission & Vision</h2>
-        <div class="container">
-            <div class="card" onclick="openModal('mission')">
-                <h3>Mission</h3>
-                <img src="all2.jpg" alt="Mission Image">
-                <p>Sharing Christ + Maturing Believers + Changing the World</p>
+    <!-- Who We Are -->
+    <section style="background:#f8f9fa; padding:28px 16px;">
+        <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; align-items:start;">
+            <div style="background:#fff; border:1px solid #e9ecef; border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(0,0,0,.06);">
+                <h2 style="font-size:1.4rem; color:#23295e; margin-bottom:8px;">Who We Are</h2>
+                <p style="color:#6c757d;">A Christ-centered community committed to Biblical teaching, vibrant worship, and compassionate outreach.</p>
             </div>
-            <div class="card" onclick="openModal('vision1')">
-                <h3>Vision</h3>
-                <img src="everyone.jpg" alt="Vision Image 1">
-                <p>
-                    We see a blazing light coming from Lusaka, Zambia. This light is a church named Miracle Life Family Church. We have seen its future brightness with God.
-                </p>
+            <div style="background:#fff; border:1px solid #e9ecef; border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(0,0,0,.06);">
+                <h2 style="font-size:1.4rem; color:#23295e; margin-bottom:8px;">Our Mission</h2>
+                <p style="color:#6c757d;">Sharing Christ. Maturing Believers. Changing the World.</p>
             </div>
-            <div class="card" onclick="openModal('vision2')">
-                <h3>vision Statement</h3>
-                <img src="pyy1.jpg" alt="Vision Image 2">
-                <p>
-                    We see a church where the Word of God reigns supreme. It grows and prevails against unbelief, culture, and worldly influence in the lives of people.
-                </p>
+            <div style="background:#fff; border:1px solid #e9ecef; border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(0,0,0,.06);">
+                <h2 style="font-size:1.4rem; color:#23295e; margin-bottom:8px;">Our Vision</h2>
+                <p style="color:#6c757d;">A Spirit-empowered church where Godâ€™s Word reigns supreme and transforms lives.</p>
             </div>
         </div>
     </section>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+    <!-- Mission & Vision Cards -->
+    <section id="mission-vision" style="margin: 28px; text-align:center; background: linear-gradient(45deg, #ffffff, #e8f0fe); padding: 28px; border-radius: 10px;">
+        <h2 style="font-size:2rem; margin-bottom:16px; color:#2a2a72; text-transform:uppercase;">Mission & Vision</h2>
+        <div class="container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px;">
+            <div class="card" onclick="openModal('mission')" style="background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1); padding:16px; cursor:pointer;">
+                <h3 style="font-size:1.2rem; color:#2a2a72; margin-bottom:10px;">Mission</h3>
+                <img src="all2.jpg" alt="Mission Image" style="width:100%; border-radius:8px; margin-bottom:10px;">
+                <p style="color:#666;">Sharing Christ + Maturing Believers + Changing the World</p>
+            </div>
+            <div class="card" onclick="openModal('vision1')" style="background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1); padding:16px; cursor:pointer;">
+                <h3 style="font-size:1.2rem; color:#2a2a72; margin-bottom:10px;">Vision</h3>
+                <img src="everyone.jpg" alt="Vision Image 1" style="width:100%; border-radius:8px; margin-bottom:10px;">
+                <p style="color:#666;">We see a blazing light coming from Lusaka, Zambia. This light is a church named Miracle Life Family Church.</p>
+            </div>
+            <div class="card" onclick="openModal('vision2')" style="background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1); padding:16px; cursor:pointer;">
+                <h3 style="font-size:1.2rem; color:#2a2a72; margin-bottom:10px;">Vision Statement</h3>
+                <img src="pyy1.jpg" alt="Vision Image 2" style="width:100%; border-radius:8px; margin-bottom:10px;">
+                <p style="color:#666;">We see a church where the Word of God reigns supreme and transforms culture and lives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Beliefs -->
+    <section style="background:#fff; padding:28px 16px;">
+        <div style="max-width:1100px; margin:0 auto;">
+            <h2 style="text-align:center; font-size:1.6rem; color:#23295e; margin-bottom:14px;">Core Beliefs</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
+                <div style="border:1px solid #e9ecef; border-radius:12px; padding:16px;">
+                    <h3 style="font-size:1.05rem; margin-bottom:6px; color:#1c2833;">The Bible</h3>
+                    <p style="color:#6c757d;">Godâ€™s inspired Word and final authority for faith and life.</p>
+                </div>
+                <div style="border:1px solid #e9ecef; border-radius:12px; padding:16px;">
+                    <h3 style="font-size:1.05rem; margin-bottom:6px; color:#1c2833;">Jesus Christ</h3>
+                    <p style="color:#6c757d;">The Son of Godâ€”our Savior, Lord, and soon coming King.</p>
+                </div>
+                <div style="border:1px solid #e9ecef; border-radius:12px; padding:16px;">
+                    <h3 style="font-size:1.05rem; margin-bottom:6px; color:#1c2833;">Salvation</h3>
+                    <p style="color:#6c757d;">By grace through faith in Christ alone.</p>
+                </div>
+                <div style="border:1px solid #e9ecef; border-radius:12px; padding:16px;">
+                    <h3 style="font-size:1.05rem; margin-bottom:6px; color:#1c2833;">The Church</h3>
+                    <p style="color:#6c757d;">Called to worship, witness, and serve together in unity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section style="background:#f8f9fa; padding:28px 16px;">
+        <div style="max-width:1100px; margin:0 auto;">
+            <h2 style="text-align:center; font-size:1.6rem; color:#23295e; margin-bottom:14px;">Leadership</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
+                <div style="background:#fff; border:1px solid #e9ecef; border-radius:12px; overflow:hidden;">
+                    <div style="position:relative; padding-top:66%; background:#000;"><img src="director2.jpg" alt="Lead Pastor" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+                    <div style="padding:12px 14px 16px;">
+                        <h3 style="margin:0 0 4px 0; font-size:1.05rem; color:#1c2833;">Lead Pastor</h3>
+                        <p style="margin:0; color:#6c757d;">Shepherding the church with vision and pastoral care.</p>
+                    </div>
+                </div>
+                <div style="background:#fff; border:1px solid #e9ecef; border-radius:12px; overflow:hidden;">
+                    <div style="position:relative; padding-top:66%; background:#000;"><img src="womenoffaith10.jpeg" alt="Worship Lead" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+                    <div style="padding:12px 14px 16px;">
+                        <h3 style="margin:0 0 4px 0; font-size:1.05rem; color:#1c2833;">Worship Lead</h3>
+                        <p style="margin:0; color:#6c757d;">Leading our congregation in Spirit-filled praise.</p>
+                    </div>
+                </div>
+                <div style="background:#fff; border:1px solid #e9ecef; border-radius:12px; overflow:hidden;">
+                    <div style="position:relative; padding-top:66%; background:#000;"><img src="everyone.jpg" alt="Youth Director" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></div>
+                    <div style="padding:12px 14px 16px;">
+                        <h3 style="margin:0 0 4px 0; font-size:1.05rem; color:#1c2833;">Youth Director</h3>
+                        <p style="margin:0; color:#6c757d;">Equipping the next generation to follow Jesus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background:#23295e; color:#fff; padding:24px 16px;">
+        <div style="max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
+            <div>
+                <h3 style="margin:0 0 6px 0; font-size:1.4rem;">Plan Your Visit</h3>
+                <p style="margin:0; opacity:.9;">Weâ€™d love to welcome you this Sabbath. Let us know youâ€™re coming.</p>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <a href="contact.html" style="background:#f4d03f; color:#1c2833; padding:10px 14px; border-radius:8px; font-weight:700; text-decoration:none;">Get Directions</a>
+                <a href="contact.html" style="background:#fff; color:#23295e; padding:10px 14px; border-radius:8px; font-weight:700; text-decoration:none;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple modal script for Mission/Vision cards -->
+    <div id="modal" class="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); align-items:center; justify-content:center; z-index:2000;">
+        <div class="modal-content" style="background:#fff; border-radius:10px; width:min(90vw, 800px); max-height:90vh; overflow:auto; padding:20px; position:relative; box-shadow:0 10px 30px rgba(0,0,0,.2);">
+            <button class="close" onclick="document.getElementById('modal').style.display='none'" style="position:absolute; top:10px; right:12px; background:transparent; border:none; font-size:1.6rem; cursor:pointer;">&times;</button>
             <div id="modal-data"></div>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-column">
-            <h3>CONTACT US</h3>
-            <p>+260 979 888555 | +260 964 888555</p>
-            <p>Emergency Line for members only:</p>
-            <p>+260 967 or 977 521929</p>
-            <p>Email: info@mlfc.org</p>
-          </div>
-          <div class="footer-column">
-            <h3>ADDRESS</h3>
-            <p>Plot 256 Foxdale, Zambezi Road</p>
-            <p>Chamba Valley, PO Box 32275</p>
-            <p>Lusaka, Zambia</p>
-          </div>
-          <div class="footer-column">
-            <h3>FOLLOW US</h3>
-            <div class="social-icons">
-              <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
-          </div>
-        </div>
-      </footer>
-      
-      <style>
-        /* Basic footer styles */
-        .footer {
-          background-color: #333;
-          color: #fff;
-          padding: 40px 0;
-          font-family: Arial, sans-serif;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-align: center; /* Ensures text is centered within the footer */
-        }
-      
-        .footer-container {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          max-width: 1200px;
-          width: 100%;
-        }
-      
-        .footer-column {
-          flex: 1;
-          min-width: 250px;
-          margin: 10px;
-          text-align: left; /* Default left-align for content */
-        }
-      
-        .footer-column h3 {
-          margin-bottom: 15px;
-          font-size: 18px;
-          text-transform: uppercase;
-        }
-      
-        .footer-column p {
-          margin-bottom: 10px;
-          font-size: 14px;
-        }
-      
-        .social-icons {
-          display: flex;
-          justify-content: center;
-          margin-top: 10px;
-        }
-      
-        .social-icons a {
-          color: #fff;
-          margin-right: 15px;
-          font-size: 20px;
-          text-decoration: none;
-        }
-      
-        .social-icons a:hover {
-          color: #1e90ff;
-        }
-      
-        /* Responsiveness */
-        @media (max-width: 768px) {
-          .footer-container {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-      
-          .footer-column {
-            text-align: center;
-            margin-bottom: 20px;
-            min-width: unset;
-          }
-      
-          .social-icons {
-            justify-content: center;
-          }
-      
-          .social-icons a {
-            margin-right: 10px;
-          }
-        }
-      
-        @media (max-width: 480px) {
-          .footer-column h3 {
-            font-size: 16px;
-          }
-      
-          .footer-column p {
-            font-size: 12px;
-          }
-      
-          .social-icons a {
-            font-size: 18px;
-          }
-        }
-      </style>
-      
     <script>
         const modal = document.getElementById('modal');
         const modalData = document.getElementById('modal-data');
-
         const data = {
-            mission: {
-                title: 'Mission',
-                content: '<h3>Mission</h3><p>Sharing Christ + Maturing Believers + Changing the World</p>'
-            },
-            vision1: {
-                title: 'Vision',
-                content: '<h3>Vision</h3><p>We see a blazing light coming from Lusaka, Zambia. This light is a church named Miracle Life Family Church. We have seen its future brightness with God. It is a future that must come to pass and will come to pass.</p>'
-            },
-            vision2: {
-                title: 'Vision Details',
-                content: '<h3>Vision Details</h3><p>We see a church where the Word of God reigns supreme. It grows and prevails against unbelief, culture, and worldly influence in the lives of people. As God\'s word rises in the hearts of members, its influence is inescapable in the nation.</p>'
-            }
+            mission: { content: '<h3>Mission</h3><p>Sharing Christ + Maturing Believers + Changing the World</p>' },
+            vision1: { content: '<h3>Vision</h3><p>We see a blazing light coming from Lusaka, Zambia. This light is a church named Miracle Life Family Church.</p>' },
+            vision2: { content: '<h3>Vision Details</h3><p>We see a church where the Word of God reigns supreme. It grows and prevails against unbelief, culture, and worldly influence in people.</p>' }
         };
-
         function openModal(type) {
             modal.style.display = 'flex';
-            modalData.innerHTML = data[type].content;
+            modalData.innerHTML = data[type]?.content || '';
         }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
+        function closeModal() { modal.style.display = 'none'; }
     </script>
+
 </body>
 </html>
