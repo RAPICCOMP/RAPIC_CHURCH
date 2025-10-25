@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restoration Apostolic Pentecostal Remnant Church</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         /* Global Styles */
         * {
@@ -26,13 +25,13 @@
             100% { opacity: 1; }
         }
 
-        /* Navbar Styles */
+        /* Navbar Styles (aligned with index.html) */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: #fff;
-            padding: 10px 20px; /* Reduced padding for a smaller navbar */
+            padding: 10px 16px;
             position: fixed;
             top: 0;
             width: 100%;
@@ -41,6 +40,7 @@
             transition: all 0.3s ease-in-out;
             opacity: 0;
             animation: slideDown 0.7s forwards 0.3s;
+            height: 56px;
         }
 
         /* Slide Down animation for the navbar */
@@ -55,36 +55,18 @@
         }
 
         /* Logo Styles */
-        .navbar .logo img {
-            width: 80px; /* Reduced logo size */
-            height: auto;
-            transition: transform 0.3s ease;
-        }
+        .navbar .logo img { height: 40px; width: auto; transition: transform 0.3s ease; }
 
         .navbar .logo:hover img {
             transform: scale(1.1);
         }
 
-        .navbar .church-name {
-            font-size: 16px; /* Reduced font size */
-            color: #333;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 2px;
-            transition: color 0.3s ease;
-        }
+        /* Brand marquee text */
+        .brand-marquee { flex: 1 1 auto; min-width: 0; overflow: hidden; height: 24px; display: flex; align-items: center; margin: 0 8px; }
+        .brand-track { display: inline-block; white-space: nowrap; transform: translateX(100%); animation: brand-scroll 12s linear infinite; color: #333; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; will-change: transform; }
+        @keyframes brand-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .navbar .church-name:hover {
-            color: #f4d03f;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style-type: none;
-            transition: transform 0.5s ease-in-out;
-            opacity: 0;
-            animation: fadeInLinks 1s ease-in-out 1.2s forwards;
-        }
+        .nav-links { display: flex; list-style-type: none; transition: transform 0.5s ease-in-out; opacity: 0; animation: fadeInLinks 1s ease-in-out 1.2s forwards; }
 
         /* Fade In animation for nav links */
         @keyframes fadeInLinks {
@@ -137,21 +119,8 @@
         }
 
         /* Hamburger Menu Styles */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .hamburger .bar {
-            width: 30px;
-            height: 3px;
-            margin: 6px 0;
-            background-color: #333;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; transition: transform 0.3s ease; }
+        .hamburger .bar { width: 26px; height: 3px; margin: 4px 0; background-color: #333; border-radius: 5px; transition: all 0.3s ease; }
 
         .hamburger.active .bar:nth-child(1) {
             transform: translateY(9px) rotate(45deg);
@@ -168,47 +137,61 @@
         /* Responsive Styles */
         @media screen and (max-width: 768px) {
             .nav-links {
-                display: none;
+                display: none !important;
                 flex-direction: column;
                 width: 100%;
                 position: absolute;
-                top: 70px;
+                top: 56px;
                 left: 0;
                 background-color: #fff;
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 12px 0;
+                text-align: left;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+                border-top: 1px solid #eee;
+                z-index: 99;
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
             }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-            }
+            .nav-links li { margin: 0; }
+            .nav-links li a { display: block; padding: 12px 16px; background:#ffffff; border-bottom:1px solid #eee; }
+            .nav-links li:last-child a { border-bottom: none; }
+            .nav-links li a:hover { background:#f8f9fa; }
+            .nav-links.active { display: flex !important; visibility: visible; opacity: 1; pointer-events: auto; }
+            .nav-links:not(.active) .dropdown-menu { display: none !important; }
+            .hamburger { display: flex; }
+            .dropdown-menu { position: static; display: none; background: #fff; box-shadow: none; padding: 0; }
+            .dropdown.open > .dropdown-menu { display: block; }
+            .dropdown:hover .dropdown-menu { display: none; }
+            .nav-links a:hover { transform: none; }
         }
+        body.menu-open { overflow: hidden; }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">
-                <!-- Replace with your smaller logo file -->
+            <a href="index.html" class="logo">
                 <img src="logo.jpg" alt="Church Logo">
+            </a>
+            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-            <div class="church-name">
-                Restoration Apostolic Pentecostal Remnant Church
+            <div class="brand-marquee" aria-label="Church name">
+                <span class="brand-track">Restoration Apostolic Pentecostal Remnant Church</span>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="aboutu.html">about us</a></li>
-                <li><a href="mission.html">mission</a></li>
-                <li><a href="vision.html">vision</a></li>
-                <li><a href="history.html">history</a></li>
+                <li><a href="aboutu.html">About Us</a></li>
+                <li><a href="mission.html">Mission</a></li>
+                <li><a href="vision.html">Vision</a></li>
+                <li><a href="history.html">History</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -219,31 +202,61 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.querySelector('.nav-links');
-            const burger = document.getElementById('hamburger') || document.getElementById('mobile-menu');
-            const mobileBurger = document.getElementById('mobile-menu');
+            const burgerPrimary = document.getElementById('hamburger');
+            const burgerAlt = document.getElementById('mobile-menu');
 
-            const toggleMenu = () => {
-                if (nav) nav.classList.toggle('active');
-                if (burger) burger.classList.toggle('active');
-                if (mobileBurger && mobileBurger !== burger) mobileBurger.classList.toggle('active');
+            const openClose = () => {
+                if (!nav) return;
+                nav.classList.toggle('active');
+                burgerPrimary?.classList.toggle('active');
+                if (burgerAlt && burgerAlt !== burgerPrimary) burgerAlt.classList.toggle('active');
+                const open = nav.classList.contains('active');
+                burgerPrimary?.setAttribute('aria-expanded', open ? 'true' : 'false');
+                burgerAlt?.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (open) {
+                    document.body.classList.add('menu-open');
+                } else {
+                    document.body.classList.remove('menu-open');
+                }
             };
 
-            if (burger) burger.addEventListener('click', toggleMenu);
-            if (mobileBurger && mobileBurger !== burger) mobileBurger.addEventListener('click', toggleMenu);
+            burgerPrimary?.addEventListener('click', openClose);
+            if (burgerAlt && burgerAlt !== burgerPrimary) burgerAlt.addEventListener('click', openClose);
 
+            // Close on link click (mobile)
             nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
                 nav.classList.remove('active');
-                burger?.classList.remove('active');
-                mobileBurger?.classList.remove('active');
+                burgerPrimary?.classList.remove('active');
+                burgerAlt?.classList.remove('active');
+                burgerPrimary?.setAttribute('aria-expanded', 'false');
+                burgerAlt?.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
             }));
 
+            // Close when clicking outside
             document.addEventListener('click', (e) => {
                 if (!nav) return;
-                const inside = nav.contains(e.target) || (burger && burger.contains(e.target)) || (mobileBurger && mobileBurger.contains(e.target));
+                const target = e.target;
+                const inside = nav.contains(target) || burgerPrimary?.contains(target) || burgerAlt?.contains(target);
                 if (!inside) {
                     nav.classList.remove('active');
-                    burger?.classList.remove('active');
-                    mobileBurger?.classList.remove('active');
+                    burgerPrimary?.classList.remove('active');
+                    burgerAlt?.classList.remove('active');
+                    burgerPrimary?.setAttribute('aria-expanded', 'false');
+                    burgerAlt?.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-open');
+                }
+            });
+
+            // Close on resize to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    nav?.classList.remove('active');
+                    burgerPrimary?.classList.remove('active');
+                    burgerAlt?.classList.remove('active');
+                    burgerPrimary?.setAttribute('aria-expanded', 'false');
+                    burgerAlt?.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-open');
                 }
             });
         });
