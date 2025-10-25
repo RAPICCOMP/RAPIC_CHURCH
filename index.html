@@ -775,6 +775,66 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="section container" style="padding: 48px 20px;">
+        <h2 class="section-title" style="text-align:center; font-size:2rem; margin-bottom:12px; color:#1c2833;">About Our Church</h2>
+        <p style="max-width:840px; margin:0 auto; text-align:center; color:#555; font-size:1.05rem;">We are a Christ-centered community devoted to prayer, sound teaching, and service. Whether you’re new to faith or looking for a church family, there’s a place for you here.</p>
+    </section>
+
+    <!-- Ministries / Features Grid -->
+    <section class="container" style="padding: 12px 20px 48px 20px;">
+        <div class="grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+            <div class="card" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:8px; color:#1c2833;">Worship Services</h3>
+                <p style="color:#555;">Encounter God through heartfelt worship and the Word every week.</p>
+            </div>
+            <div class="card" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:8px; color:#1c2833;">Youth & Children</h3>
+                <p style="color:#555;">Engaging programs that build faith for the next generation.</p>
+            </div>
+            <div class="card" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:8px; color:#1c2833;">Women & Men</h3>
+                <p style="color:#555;">Small groups and gatherings for discipleship and community.</p>
+            </div>
+            <div class="card" style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.08);">
+                <h3 style="margin-bottom:8px; color:#1c2833;">Outreach</h3>
+                <p style="color:#555;">Serving our city with compassion through practical support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Teaser -->
+    <section class="container" style="padding: 0 20px 48px 20px;">
+        <div style="background:#fef9e7; border:1px solid #f9e79f; border-radius:12px; padding:20px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;">
+            <div>
+                <h3 style="margin-bottom:6px; color:#7d6608;">This Week at Church</h3>
+                <p style="color:#7d6608; max-width:720px;">Don’t miss our mid-week prayer and Sunday worship. Check the events page for details and times.</p>
+            </div>
+            <a href="event.html" class="btn-primary" style="white-space:nowrap;">See Events</a>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="container" style="padding: 0 20px 48px 20px;">
+        <div style="background:linear-gradient(135deg, #2c3e50, #34495e); color:#fff; border-radius:14px; padding:28px; text-align:center;">
+            <h3 style="font-size:1.6rem; margin-bottom:8px;">Join Us This Sunday</h3>
+            <p style="opacity:0.95; margin-bottom:16px;">Experience worship, teaching, and community for the whole family.</p>
+            <a href="#contact" class="btn-primary">Plan Your Visit</a>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="container" style="padding: 0 20px 28px 20px;">
+        <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.06); max-width:720px; margin:0 auto; text-align:center;">
+            <h3 style="margin-bottom:8px; color:#1c2833;">Stay in the loop</h3>
+            <p style="color:#555; margin-bottom:14px;">Get news, events, and sermon highlights to your inbox.</p>
+            <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!';" style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <input type="email" required placeholder="Your email" style="padding:10px 12px; border:1px solid #ccd1d1; border-radius:8px; min-width:260px;">
+                <button class="btn-secondary" type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.querySelector('.nav-links');
