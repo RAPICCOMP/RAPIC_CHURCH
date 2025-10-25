@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -327,59 +327,6 @@
         </div>
       </footer>
 
-    <script>
-        // Mobile nav: toggle and close on link/outside clicks
-        document.addEventListener('DOMContentLoaded', () => {
-            const nav = document.querySelector('.nav-links');
-            const burger = document.getElementById('hamburger') || document.getElementById('mobile-menu');
-            const mobileBurger = document.getElementById('mobile-menu');
+    </body>
 
-            const toggleMenu = () => {
-                if (nav) nav.classList.toggle('active');
-                if (burger) burger.classList.toggle('active');
-                if (mobileBurger && mobileBurger !== burger) mobileBurger.classList.toggle('active');
-            };
-
-            if (burger) burger.addEventListener('click', toggleMenu);
-            if (mobileBurger && mobileBurger !== burger) mobileBurger.addEventListener('click', toggleMenu);
-
-            nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-                nav.classList.remove('active');
-                burger?.classList.remove('active');
-                mobileBurger?.classList.remove('active');
-            }));
-
-            document.addEventListener('click', (e) => {
-                if (!nav) return;
-                const inside = nav.contains(e.target) || (burger && burger.contains(e.target)) || (mobileBurger && mobileBurger.contains(e.target));
-                if (!inside) {
-                    nav.classList.remove('active');
-                    burger?.classList.remove('active');
-                    mobileBurger?.classList.remove('active');
-                }
-            });
-        });
-
-        // Slideshow functionality
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function showSlides() {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active-slide');
-                if (index === slideIndex) {
-                    slide.classList.add('active-slide');
-                }
-            });
-
-            slideIndex = (slideIndex + 1) % slides.length;
-            setTimeout(showSlides, 5000); // Change slide every 5 seconds
-        }
-
-        // Initialize slideshow
-        showSlides();
-    </script>
-</body>
-
-</html>
-
+    </html>
