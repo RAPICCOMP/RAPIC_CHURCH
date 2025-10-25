@@ -482,7 +482,7 @@
                 <h3>Vision</h3>
                 <img src="everyone.jpg" alt="Vision Image 1">
                 <p>
-                    We see a blazing light coming from Lusaka, Zambia. This light is a church named Miracle Life Family Church. We have seen its future brightness with God.
+                    We see a blazing light coming from Lusaka, Zambia. This light is a church named Restoration Apostolic Remnant Church. We have seen its future brightness with God.
                 </p>
             </div>
             <div class="card" onclick="openModal('vision2')">
@@ -634,7 +634,7 @@
             },
             vision1: {
                 title: 'Vision',
-                content: '<h3>Vision</h3><p>We see a blazing light coming from Lusaka, Zambia. This light is a church named Miracle Life Family Church. We have seen its future brightness with God. It is a future that must come to pass and will come to pass.</p>'
+                content: '<h3>Vision</h3><p>We see a blazing light coming from Lusaka, Zambia. This light is a church named Restoration Apostolic Remnant Church. We have seen its future brightness with God. It is a future that must come to pass and will come to pass.</p>'
             },
             vision2: {
                 title: 'Vision Details',
