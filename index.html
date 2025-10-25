@@ -50,8 +50,7 @@
         }
 
         .navbar:hover {
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.12);
         }
 
         /* Logo Styles */
@@ -672,6 +671,18 @@
 
 
 
+        /* Hero Section */
+        .hero { position: relative; width: 100%; min-height: 60vh; display: flex; align-items: center; justify-content: center; color: #fff; background-size: cover; background-position: center; background-repeat: no-repeat; }
+        .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35)); }
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; padding: 40px 20px; text-align: center; }
+        .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 12px; }
+        .hero p { font-size: 1.1rem; opacity: 0.95; margin-bottom: 22px; }
+        .hero-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .btn-primary { background: #f4d03f; color: #1c2833; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #2c3e50; color: #fff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; border: 1px solid rgba(255,255,255,0.25); }
+        .btn-secondary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+
     </style>
 </head>
 
@@ -752,6 +763,18 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('youth.jpg');">
+        <div class="hero-content">
+            <h1>Welcoming You Home</h1>
+            <p>Join us in worship, community, and growth in Christ. Discover sermons, connect with ministries, and plan your visit.</p>
+            <div class="hero-actions">
+                <a href="sermon.html" class="btn-primary">Watch Sermons</a>
+                <a href="#contact" class="btn-secondary">Plan Your Visit</a>
+            </div>
+        </div>
+    </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.querySelector('.nav-links');
@@ -786,264 +809,6 @@
             });
         });
     </script>
-</body>
-</html>
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Remnant Church</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Global styles */
-       
-
-
-    </style>
-</head>
-
-<body>
-    <!-- Carousel Section -->
-    <div class="slideshow-container">
-        <div class="carousel">
-            <div class="carousel-item active" style="background-image: url('youth.jpg');">
-                <div class="overlay-text">Welcome to Our Church</div>
-            </div>
-            <div class="carousel-item" style="background-image: url('chieftainess.jpg');">
-                <div class="overlay-text">Thank You For Coming</div>
-            </div>
-            <div class="carousel-item" style="background-image: url('womenoffaith5.jpg');">
-                <div class="overlay-text">Feel the Holy Spirit</div>
-            </div>
-
-
-            <div class="carousel-item active" style="background-image: url('director2.jpg');">
-                <div class="overlay-text">Pray Until Something</div>
-            </div>
-            <div class="carousel-item" style="background-image: url('power.jpeg');">
-                <div class="overlay-text">Experience The Power Of God</div>
-            </div>
-            <div class="carousel-item" style="background-image: url('womenoffaith10.jpeg');">
-                <div class="overlay-text"> Praise His Holy Name </div>
-            </div>
-        </div>
-        <div class="carousel-controls">
-            <span class="prev">&#10094;</span>
-            <span class="next">&#10095;</span>
-        </div>
-    </div>
-
-    
-
-    <!-- Sermon Section -->
-    <div style="margin-top: 40px; position: center;">
-        <h1 style=" font-family: 'Playfair Display', serif; font-size: 3rem;text-align: center; color: #0c0808; margin-bottom: 20px; position: center;"><strong>Recent Sermons</strong></h1>
-    <section class="sermon-section container">
-        <div class="sermon-card">
-            <img src="pyy1.jpg" alt="Trusting God in Difficult Times">
-            <div class="content">
-                <div class="title">Trusting God in Difficult Times</div>
-                <div class="description">Discover how to rely on God's strength through life's challenges.</div>
-                <a href="sermonpage1.html" class="btn">Watch Now</a>
-            </div>
-        </div>
-        <div class="sermon-card">
-            <img src="pyy2.jpg" alt="The Power of Love">
-            <div class="content">
-                <div class="title">The Power of Love</div>
-                <div class="description">Experience the transformative power of God's love.</div>
-                <a href="sermonpage1.html" class="btn">Watch Now</a>
-            </div>
-        </div>
-        <div class="sermon-card">
-            <img src="pyy5.jpg" alt="Christian Perspective on Challenges">
-            <div class="content">
-                <div class="title">Encouragement Through Challenges</div>
-                <div class="description">A Christian view on overcoming personal trials.</div>
-                <a href="sermonpage1.html" class="btn">Watch Now</a>
-            </div> 
-        </div>
-        <div class="sermon-card">
-            <img src="pyy4.jpg" alt="Grace in Action">
-            <div class="content">
-                <div class="title">Grace in Action</div>
-                <div class="description">Living out God's grace in our daily lives.</div>
-                <a href="sermonpage1.html" class="btn">Watch Now</a>
-            </div>
-        </div>
-        <div class="sermon-card">
-            <img src="pyy3.jpg" alt="Faith That Moves Mountains">
-            <div class="content">
-                <div class="title">Faith That Moves Mountains</div>
-                <div class="description">Understanding the true power of faith in God.</div>
-                <a href="sermonpage1.html" class="btn">Watch Now</a>
-            </div>
-        </div>
-
- 
-
-        <!-- Lightbox Modal -->
-        <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; z-index: 1000;">
-            <img id="lightbox-img" src="" alt="Lightbox" style="max-width: 90%; max-height: 90%; border-radius: 8px;">
-            <button onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; background: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">&times;</button>
-        </div>
-
-    </div>
-</section>
-
-<script>
-    function openLightbox(src) {
-        document.getElementById('lightbox').style.display = 'flex';
-        document.getElementById('lightbox-img').src = src;
-    }
-    function closeLightbox() {
-        document.getElementById('lightbox').style.display = 'none';
-    }
-</script>
-
-
-
-    
-        
-
-
-   <!-- Contact Section -->
-<section id="contact" class="contact" style="background-color: #1c0e3a; padding: 50px 20px;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center;">
-        
-        <p style="color: #fcf5f5; font-size: 1.2rem; margin-bottom: 30px; line-height: 1.6;"></p>
-        
-       
-        
-       <!-- Testimonial Section -->
-<div class="testimonial-slider" style="margin-top: 50px;">
-    <h3 style="text-align: center; font-size: 2rem; margin-bottom: 20px; color: #c2cbd3;">What Our Members Say</h3>
-    <div style="overflow: hidden; max-width: 100%; position: relative;">
-        <!-- Slider Track -->
-        <div class="slider-track" style="display: flex; gap: 20px; transition: transform 0.5s ease; width: 100%;">
-            <div style="flex: 0 0 300px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-style: italic;">"Attending this church has been a life-changing experience. I feel closer to God every day!"</p>
-                <p style="font-weight: bold; text-align: right; color: #007bff;">- John Doe</p>
-            </div>
-            <div style="flex: 0 0 300px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-style: italic;">"The events and sermons here are so inspiring. I always leave feeling uplifted."</p>
-                <p style="font-weight: bold; text-align: right; color: #007bff;">- Jane Smith</p>
-            </div>
-            <div style="flex: 0 0 300px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-style: italic;">"The community here is amazing. It's like having a second family."</p>
-                <p style="font-weight: bold; text-align: right; color: #007bff;">- Mary Johnson</p>
-            </div>
-            <div style="flex: 0 0 300px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-style: italic;">"Every sermon is a blessing. I always find peace and wisdom here."</p>
-                <p style="font-weight: bold; text-align: right; color: #007bff;">- Peter Brown</p>
-            </div>
-            <div style="flex: 0 0 300px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-style: italic;">"The youth ministry is exceptional, and my children love it here!"</p>
-                <p style="font-weight: bold; text-align: right; color: #007bff;">- Linda Green</p>
-            </div>
-        </div>
-
-        <!-- Navigation Controls -->
-        <div style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); cursor: pointer; z-index: 10;" onclick="moveSlider(-1)">
-            &#10094;
-        </div>
-        <div style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer; z-index: 10;" onclick="moveSlider(1)">
-            &#10095;
-        </div>
-    </div>
-    <div style="text-align: center; margin-top: 10px;">
-        <span class="dot" style="display: inline-block; width: 10px; height: 10px; margin: 0 5px; background-color: #007bff; border-radius: 50%; cursor: pointer;" onclick="goToSlide(0)"></span>
-        <span class="dot" style="display: inline-block; width: 10px; height: 10px; margin: 0 5px; background-color: #ccc; border-radius: 50%; cursor: pointer;" onclick="goToSlide(1)"></span>
-        <span class="dot" style="display: inline-block; width: 10px; height: 10px; margin: 0 5px; background-color: #ccc; border-radius: 50%; cursor: pointer;" onclick="goToSlide(2)"></span>
-        <span class="dot" style="display: inline-block; width: 10px; height: 10px; margin: 0 5px; background-color: #ccc; border-radius: 50%; cursor: pointer;" onclick="goToSlide(3)"></span>
-        <span class="dot" style="display: inline-block; width: 10px; height: 10px; margin: 0 5px; background-color: #ccc; border-radius: 50%; cursor: pointer;" onclick="goToSlide(4)"></span>
-    </div>
-</div>
-
-<script>
-    let currentIndex = 0;
-    const totalItems = document.querySelectorAll('.slider-track > div').length;
-
-    function moveSlider(direction) {
-        const track = document.querySelector('.slider-track');
-        const itemWidth = 300 + 20; // Width + gap
-        currentIndex = (currentIndex + direction + totalItems) % totalItems;
-        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-        updateDots();
-    }
-
-    function goToSlide(index) {
-        currentIndex = index;
-        const track = document.querySelector('.slider-track');
-        const itemWidth = 300 + 20; // Width + gap
-        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-        updateDots();
-    }
-
-    function updateDots() {
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.style.backgroundColor = index === currentIndex ? '#007bff' : '#ccc';
-        });
-    }
-
-    function autoplaySlider() {
-        moveSlider(1);
-    }
-
-    // Autoplay every 5 seconds
-    setInterval(autoplaySlider, 5000);
-
-    // Initialize dots
-    updateDots();
-</script>
-
-
-        <!-- Lightbox Modal -->
-        <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; z-index: 1000;">
-            <img id="lightbox-img" src="" alt="Lightbox" style="max-width: 90%; max-height: 90%; border-radius: 8px;">
-            <button onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; background: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">&times;</button>
-        </div>
-
-    </div>
-</section>
-
-        <!-- Google Map -->
-<section>
-    <div class="map-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
-        <h3 style="text-align: center; color: #0c0808; font-size: 1.5rem; margin-bottom: 20px;">Find Us Here</h3>
-        <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.1604259214064!2d28.644494411008253!3d-12.981880892503028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x196cb5000996118b%3A0xd10ca0067fcdb915!2sRestoration%20Apostolic%20Pentecostal%20Remnant%20Church!5e1!3m2!1sen!2szm!4v1737616202748!5m2!1sen!2szm" 
-              width="100%" 
-              height="500px" 
-              style="border:0; max-width: 1200px;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              border-radius="20px">
-              
-        </iframe>
-    </div>
-</section>
-
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Remnant Church. All Rights Reserved.</p>
-        </div>
-    </footer>
-    
-
     <script>
         // Hamburger Menu Functionality
         const menuToggle = document.getElementById('mobile-menu');
@@ -1052,19 +817,6 @@
             navLinks.classList.toggle('active');
         });
     </script>
-</body>
-
-</html>
-
-        
-<footer class="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>CONTACT US</h3>
-        <p>+260 979 888555 | +260 964 888555</p>
-        <p>Emergency Line for members only:</p>
-        <p>+260 967 or 977 521929</p>
-        <p>Email: info@mlfc.org</p>
       </div>
       <div class="footer-column">
         <h3>ADDRESS</h3>
