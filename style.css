@@ -1364,3 +1364,8 @@ img { max-width: 100%; height: auto; }
 
 /* Footer readability tweaks */
 .footer { padding: 28px 0; }
+
+/* ===== Final Navbar Override (standardize to white) ===== */
+.navbar { background-color: #ffffff !important; color: #333 !important; }
+.navbar a { color: #333 !important; }
+.navbar a:hover { background-color: #f8f9fa !important; color: #23295e !important; }
