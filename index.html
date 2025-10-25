@@ -826,6 +826,21 @@
         </div>
     </section>
 
+    <!-- Photo Showcase (video-like slideshow) -->
+    <section class="container" style="padding: 0 20px 48px 20px;">
+        <div class="showcase" style="position:relative; height:60vh; border-radius:16px; overflow:hidden; background:#000;">
+            <div class="show-slide active" style="position:absolute; inset:0; background:url('youth.jpg') center/cover no-repeat; opacity:1; transition: opacity 1.2s ease; will-change: opacity, transform;"></div>
+            <div class="show-slide" style="position:absolute; inset:0; background:url('chieftainess.jpg') center/cover no-repeat; opacity:0; transition: opacity 1.2s ease; will-change: opacity, transform;"></div>
+            <div class="show-slide" style="position:absolute; inset:0; background:url('power.jpeg') center/cover no-repeat; opacity:0; transition: opacity 1.2s ease; will-change: opacity, transform;"></div>
+            <div class="show-slide" style="position:absolute; inset:0; background:url('womenoffaith10.jpeg') center/cover no-repeat; opacity:0; transition: opacity 1.2s ease; will-change: opacity, transform;"></div>
+            <div class="showcase-overlay" style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35)); pointer-events:none;"></div>
+            <div class="showcase-caption" style="position:absolute; bottom:16px; left:16px; right:16px; color:#fff; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-weight:700; font-size:1rem; text-shadow:0 2px 8px rgba(0,0,0,0.5);">Moments from Our Community</div>
+                <div class="dots" style="display:flex; gap:6px;"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Upcoming Events Teaser -->
     <section class="container" style="padding: 0 20px 48px 20px;">
         <div style="background:#fef9e7; border:1px solid #f9e79f; border-radius:12px; padding:20px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;">
@@ -942,6 +957,45 @@
                     if (willOpen) link.setAttribute('aria-expanded', 'true'); else link.setAttribute('aria-expanded', 'false');
                 });
             });
+        });
+    </script>
+
+    <!-- Showcase slider logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showcase = document.querySelector('.showcase');
+            if (!showcase) return;
+            const slides = Array.from(showcase.querySelectorAll('.show-slide'));
+            const dotsWrap = showcase.querySelector('.dots');
+            let idx = 0;
+            // Build dots
+            slides.forEach((_, i) => {
+                const d = document.createElement('span');
+                d.style.cssText = 'width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.6);display:inline-block;transition:all .2s ease;';
+                d.addEventListener('click', () => go(i));
+                dotsWrap.appendChild(d);
+            });
+            const dots = Array.from(dotsWrap.children);
+
+            function setActive(i) {
+                slides.forEach((s, si) => {
+                    const active = si === i;
+                    s.style.opacity = active ? '1' : '0';
+                    s.style.transform = active ? 'scale(1.02)' : 'scale(1.0)';
+                });
+                dots.forEach((d, di) => d.style.background = di === i ? '#f4d03f' : 'rgba(255,255,255,0.6)');
+            }
+
+            function go(n) {
+                idx = (n + slides.length) % slides.length;
+                setActive(idx);
+            }
+
+            // autoplay
+            let timer = setInterval(() => go(idx + 1), 4000);
+            showcase.addEventListener('mouseenter', () => clearInterval(timer));
+            showcase.addEventListener('mouseleave', () => timer = setInterval(() => go(idx + 1), 4000));
+            setActive(0);
         });
     </script>
       </div>
