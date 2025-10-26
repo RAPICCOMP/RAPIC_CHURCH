@@ -137,6 +137,44 @@
             transform: translateY(-3px);
         }
 
+        .tooltip {
+          position: absolute;
+          top: 110%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #000;
+          color: #fff;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 0.9rem;
+          white-space: nowrap;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover .tooltip {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .dropdown { position: relative; }
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          background-color: #444;
+          list-style: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          top: 100%;
+          left: 0;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          animation: fadeIn 0.3s ease;
+        }
+        .dropdown-menu a { color:#fff; display:block; padding:8px 10px; text-decoration:none; font-size:0.95rem; }
+        .dropdown-menu a:hover { background:#555; border-radius:5px; }
+        @media (min-width: 769px) { .dropdown:hover .dropdown-menu { display:block; } }
+
         /* Hamburger Menu Styles */
         .hamburger {
             display: none;
@@ -420,22 +458,38 @@
 </head>
 <body>
     <header>
-        <nav class="navbar" style="background:#fff; padding:10px 16px; position:fixed; top:0; left:0; right:0; z-index:1000; box-shadow:0 4px 6px rgba(0,0,0,.1);">
-            <a href="index.html" class="logo"><img src="logo.jpg" alt="Church Logo" style="height:40px; width:auto;"></a>
-            <div class="brand-marquee" aria-label="Church name" style="flex:1 1 auto; min-width:0; overflow:hidden; height:24px; display:flex; align-items:center; margin:0 8px;">
-                <span class="brand-track" style="display:inline-block; white-space:nowrap; transform:translateX(100%); animation:brand-scroll 12s linear infinite; color:#333; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase;">Restoration Apostolic Pentecostal Remnant Church</span>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="logo.jpg" alt="Church Logo" style="height: 50px;">
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-            <ul class="nav-links" style="list-style:none; display:flex;">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aboutu.html">About</a></li>
-                <li><a href="minist.html">Ministries</a></li>
-                <li><a href="event.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
+            <div class="brand-marquee" aria-label="Church name">
+                <span class="brand-track">Restoration Apostolic Pentecostal Remnant Church</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home<span class="tooltip">Back to homepage</span></a></li>
+                <li><a href="aboutu.html">About Us<span class="tooltip">Learn more about our church</span></a></li>
+                <li><a href="sermon.html">Sermons<span class="tooltip">Access inspiring sermons</span></a></li>
+                <li><a href="event.html">Events<span class="tooltip">See upcoming events</span></a></li>
+                <li class="dropdown">
+                    <a href="minist.html" aria-expanded="false">Ministries<span class="tooltip">Explore our ministries</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="youth-ministry.html">Youth Ministry</a></li>
+                        <li><a href="women-ministry.html">Women Ministry</a></li>
+                        <li><a href="outreach.html">Outreach Programs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contacts<span class="tooltip">Get in touch with us</span></a></li>
+                <li><a href="freewillgiving.html">Free will Offering<span class="tooltip">Support our mission</span></a></li>
             </ul>
-            <div class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" style="display:none; flex-direction:column; cursor:pointer;">
-                <div class="bar" style="width:26px; height:3px; margin:4px 0; background:#333; border-radius:5px;"></div>
-                <div class="bar" style="width:26px; height:3px; margin:4px 0; background:#333; border-radius:5px;"></div>
-                <div class="bar" style="width:26px; height:3px; margin:4px 0; background:#333; border-radius:5px;"></div>
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </nav>
     </header>
@@ -443,32 +497,92 @@
     <style>
       @keyframes brand-scroll { 0% { transform: translateX(100%);} 100% { transform: translateX(-100%);} }
       @media (max-width:768px){
-        .nav-links{display:none !important; flex-direction:column; width:100%; position:absolute; top:56px; left:0; background:#fff; padding:12px 0; text-align:left; box-shadow:0 4px 12px rgba(0,0,0,.12); border-top:1px solid #eee; z-index:999; visibility:hidden; opacity:0; pointer-events:none; transition:opacity .2s ease;}
+        .nav-links{display:none !important; flex-direction:column; width:100%; position:absolute; top:70px; left:0; background:#ffffff; padding:12px 0; text-align:left; box-shadow:0 4px 12px rgba(0,0,0,.12); border-top:1px solid #eee; z-index:99; visibility:hidden; opacity:0; pointer-events:none; transition:opacity .2s ease;}
         .nav-links li{margin:0}
-        .nav-links li a{display:block; padding:12px 16px; background:#fff; border-bottom:1px solid #eee}
+        .nav-links li a{display:block; padding:12px 16px; background:#ffffff; border-bottom:1px solid #eee}
         .nav-links li:last-child a{border-bottom:none}
         .nav-links li a:hover{background:#f8f9fa}
         .nav-links.active{display:flex !important; visibility:visible; opacity:1; pointer-events:auto}
+        .nav-links:not(.active) .dropdown-menu { display: none !important; }
         .hamburger{display:flex !important}
+        .dropdown-menu { position: static; display: none; background: #fafafa; box-shadow: none; padding: 0; }
+        .dropdown.open > .dropdown-menu { display:block; }
+        .dropdown:hover .dropdown-menu { display:none; }
+        .nav-links a:hover { transform: none; }
       }
       body.menu-open{overflow:hidden}
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const nav = document.querySelector('.nav-links');
-        const burger = document.getElementById('hamburger');
-        const toggle = () => {
-          if (!nav) return;
-          nav.classList.toggle('active');
-          burger?.classList.toggle('active');
-          const open = nav.classList.contains('active');
-          burger?.setAttribute('aria-expanded', open ? 'true':'false');
-          document.body.classList.toggle('menu-open', open);
+        const burgerPrimary = document.getElementById('hamburger');
+        const burgerAlt = document.getElementById('mobile-menu');
+        const dropdownLinks = document.querySelectorAll('.nav-links .dropdown > a');
+
+        const openClose = () => {
+            if (!nav) return;
+            nav.classList.toggle('active');
+            burgerPrimary?.classList.toggle('active');
+            if (burgerAlt && burgerAlt !== burgerPrimary) burgerAlt.classList.toggle('active');
+            const open = nav.classList.contains('active');
+            burgerPrimary?.setAttribute('aria-expanded', open ? 'true' : 'false');
+            burgerAlt?.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) { document.body.classList.add('menu-open'); } else { document.body.classList.remove('menu-open'); }
+            if (!open) { nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open')); }
         };
-        burger?.addEventListener('click', toggle);
-        nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ nav.classList.remove('active'); burger?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }));
-        document.addEventListener('click',(e)=>{ if(!nav) return; const t=e.target; const inside = nav.contains(t)||burger?.contains(t); if(!inside){ nav.classList.remove('active'); burger?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }});
-        window.addEventListener('resize',()=>{ if(window.innerWidth>768){ nav?.classList.remove('active'); burger?.classList.remove('active'); burger?.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }});
+
+        burgerPrimary?.addEventListener('click', openClose);
+        if (burgerAlt && burgerAlt !== burgerPrimary) burgerAlt.addEventListener('click', openClose);
+
+        nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            nav.classList.remove('active');
+            burgerPrimary?.classList.remove('active');
+            burgerAlt?.classList.remove('active');
+            burgerPrimary?.setAttribute('aria-expanded', 'false');
+            burgerAlt?.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+            nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+        }));
+
+        document.addEventListener('click', (e) => {
+            if (!nav) return;
+            const target = e.target;
+            const inside = nav.contains(target) || burgerPrimary?.contains(target) || burgerAlt?.contains(target);
+            if (!inside) {
+                nav.classList.remove('active');
+                burgerPrimary?.classList.remove('active');
+                burgerAlt?.classList.remove('active');
+                burgerPrimary?.setAttribute('aria-expanded', 'false');
+                burgerAlt?.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
+                nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                nav?.classList.remove('active');
+                burgerPrimary?.classList.remove('active');
+                burgerAlt?.classList.remove('active');
+                burgerPrimary?.setAttribute('aria-expanded', 'false');
+                burgerAlt?.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
+                nav?.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+            }
+        });
+
+        const isMobile = () => window.innerWidth <= 768;
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!isMobile()) return;
+                e.preventDefault();
+                const parent = link.parentElement;
+                const willOpen = !parent.classList.contains('open');
+                nav.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+                parent.classList.toggle('open', willOpen);
+                link.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+            });
+        });
       });
     </script>
 
